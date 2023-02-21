@@ -69,9 +69,7 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
     setUser(undefined);
     sessionStorage.clear();
     setIsLogged(false);
-
   };
-  console.log(user);
 
   return (
     <AuthContext.Provider value={{

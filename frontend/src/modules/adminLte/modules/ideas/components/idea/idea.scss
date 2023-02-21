@@ -15,7 +15,7 @@
     margin: 0 0 20px 0;
 
     .title-idea {
-      font-size: 20px;
+      font-size: 18px;
       margin: 0;
     }
 
@@ -29,6 +29,7 @@
   .description {
     font-size: 16px;
     text-align: justify;
+
   }
 
   .cont-buttoms {
@@ -37,12 +38,16 @@
 
   .btn-show-more {
     border: none;
-    background: $general;
+    background: $color-secondary;
     padding: 5px 10px;
     border-radius: 5px;
     font-size: 16px;
     color: $white;
+    transition: .3s;
 
+    &:hover {
+      opacity: .8;
+    }
 
   }
 
@@ -56,5 +61,15 @@
       font-size: 18px;
     }
 
+    .icon-selected {
+      animation: animationFavorite .3s linear;
+    }
+
+  }
+}
+
+@keyframes animationFavorite {
+  0% {
+    transform: scale(1.5);
   }
 }

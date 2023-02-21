@@ -48,7 +48,6 @@ export default class AzureGraphServices {
   }
 
   static async getUser(): Promise<User> {
-    console.log('asdasd', msalInstance.getActiveAccount());
     this.ensureClient(this.authProvider);
 
     const user: User = await graphClient!.api('/me')

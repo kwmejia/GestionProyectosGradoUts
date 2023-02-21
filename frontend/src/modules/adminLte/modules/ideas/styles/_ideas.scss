@@ -1,22 +1,18 @@
 .ideas {
   width: 100%;
+  height: 100%;
   display: flex;
-  justify-content: center;
   flex-direction: column;
+  align-items: center;
+  animation: fadeIn .2s linear;
 
   .title-section {
-    font-size: 24px;
+    font-size: 32px;
     font-weight: bold;
-    text-transform: uppercase;
     text-align: start;
   }
 
-  .container-ideas {
-    display: flex;
-    justify-content: start;
-    flex-wrap: wrap;
-    gap: 10px;
-
-  }
-
 }
+
+
+@media (max-width:767px) {}
