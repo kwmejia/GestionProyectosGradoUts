@@ -1,0 +1,93 @@
+$color-shadow-effect: #45f3ff;
+$width-login: 360px;
+$height-login: 420px;
+$bg-login: #FAFAFA;
+
+.flex_center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.container_ {
+  width: 100%;
+  min-height: 100vh;
+  background: #23242a;
+
+  .login {
+    padding: 10px;
+    background: #1c1c1c;
+    position: relative;
+    width: $width-login;
+    height: $height-login;
+    border-radius: 8px;
+    overflow: hidden;
+    animation: animationLogin .8s linear;
+
+    .form {
+      position: absolute;
+      inset: 5px;
+      border-radius: 8px;
+      z-index: 10;
+      background: #FAFAFA;
+      flex-direction: column;
+
+      .btn_login {
+        padding: 7px;
+        border: none;
+        border-radius: 6px;
+        transition: .5s;
+        margin-top: 20px;
+        background: #23242a;
+        color: #FAFAFA99;
+
+        &:hover {
+          background: #23242a99;
+          color: white;
+        }
+      }
+    }
+
+    &::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: $width-login;
+      height: $height-login;
+      transform-origin: bottom right;
+      background: linear-gradient(0deg, transparent, $color-shadow-effect, $color-shadow-effect);
+      animation: animateLogin 6s linear infinite;
+    }
+
+    &::after {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: $width-login;
+      height: $height-login;
+      transform-origin: bottom right;
+      background: linear-gradient(0deg, transparent, $color-shadow-effect, $color-shadow-effect);
+      animation: animateLogin 6s linear infinite;
+      animation-delay: -3s;
+    }
+  }
+}
+
+@keyframes animateLogin {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes animationLogin {
+  0% {
+    transform: translateX(400px);
+  }
+}

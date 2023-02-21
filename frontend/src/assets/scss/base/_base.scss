@@ -1,0 +1,81 @@
+@import './font';
+@import './scrolls';
+@import './variables';
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap');
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+
+a {
+  text-decoration: none !important;
+}
+
+p {
+  margin: 0 !important;
+}
+
+/* Shadow */
+.box-shadow29 {
+  box-shadow: 0px 1px 3px #00000029;
+}
+
+
+/*opacity*/
+.op-0 {
+  opacity: 0 !important;
+}
+
+.op-01 {
+  opacity: 0.1 !important;
+}
+
+.op-02 {
+  opacity: 0.2 !important;
+}
+
+.op-03 {
+  opacity: 0.3 !important;
+}
+
+.op-04 {
+  opacity: 0.4 !important;
+}
+
+.op-05 {
+  opacity: 0.5 !important;
+}
+
+.op-06 {
+  opacity: 0.6 !important;
+}
+
+.op-07 {
+  opacity: 0.7 !important;
+}
+
+.op-08 {
+  opacity: 0.8 !important;
+}
+
+.op-09 {
+  opacity: 0.9 !important;
+}
+
+.op-1 {
+  opacity: 1 !important;
+}
+
+.content-page {
+  height: calc(100vh - 56px);
+  overflow-y: auto;
+}
+
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}

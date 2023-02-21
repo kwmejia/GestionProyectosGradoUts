@@ -1,0 +1,22 @@
+.ideas {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+
+  .title-section {
+    font-size: 24px;
+    font-weight: bold;
+    text-transform: uppercase;
+    text-align: start;
+  }
+
+  .container-ideas {
+    display: flex;
+    justify-content: start;
+    flex-wrap: wrap;
+    gap: 10px;
+
+  }
+
+}
