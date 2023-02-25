@@ -4,11 +4,12 @@ import { useContext, useEffect, useState } from 'react';
 import { useIdeas } from '../../../../hooks/useIdeas';
 import { AuthContext } from '../../../../context';
 import { useFavorites } from '../../../../hooks/useFavorites';
+import { IdeaSkeletonComponent } from '../../../shared/components/skeletons/ideaSkeleton/IdeaSkeletonComponent';
 
 const IdeasPage = () => {
 
   const [favoritesCard, setfavoritesCard] = useState([]);
-  const { getIdeas, ideas } = useIdeas();
+  const { getIdeas, ideas, loader } = useIdeas();
   const { user } = useContext(AuthContext);
   const { getFavorites } = useFavorites();
 
@@ -36,9 +37,12 @@ const IdeasPage = () => {
           </div>
         </div>
         <div
-          className="container-ideas d-flex m-4 gap-4 gap-xxl-5 justify-content-center  justify-content-xl-start   flex-wrap"
+          className="container-ideas w-100 d-flex m-4 gap-4 gap-xxl-5 justify-content-center  justify-content-xl-start   flex-wrap"
         >
-          {ideas.map(idea => (<CardIdea idea={idea} favorites={favoritesCard} key={idea.id_idea} />))}
+          {loader
+            ? <IdeaSkeletonComponent loader={loader} />
+            : ideas.map(idea => (<CardIdea idea={idea} favorites={favoritesCard} key={idea.id_idea} />))}
+
         </div>
       </div>
     </>
