@@ -1,0 +1,64 @@
+:root {
+  --neutralColor: #777777;
+}
+
+.container-page {
+  min-height: 100vh;
+}
+
+h2 {
+  font-weight: bold;
+  font-size: 60px;
+  color: var(--neutralColor);
+  margin: 20px 0;
+}
+
+h4 {
+  font-size: 34px;
+  color: var(--neutralColor);
+  margin: 20px 0;
+}
+
+p {
+  font-size: 16px;
+  color: var(--neutralColor);
+
+}
+
+p:nth-child(1) {
+  margin: 20px 0 0 0;
+}
+
+span {
+  font-weight: 500;
+}
+
+@media (max-width:575px) {
+  h2 {
+    font-weight: bold;
+    font-size: 50px;
+    margin: 10px 0;
+  }
+
+  h4 {
+    font-size: 24px;
+    color: var(--neutralColor);
+    margin: 10px 0;
+  }
+
+  p {
+    font-size: 12px;
+    color: var(--neutralColor);
+
+  }
+
+  p:nth-child(1) {
+    margin: 10px 0 0 0;
+  }
+
+  span {
+    font-size: 12px;
+    font-weight: 500;
+  }
+
+}

@@ -4,7 +4,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import './styles/_LoginPage.scss';
 import { Navigate } from 'react-router-dom';
 
-export const LoginPage = () => {
+const LoginPage = () => {
 
   const { isLogged, logIn } = useContext(AuthContext);
   if (isLogged) return (<Navigate to="/" />);
@@ -26,3 +26,5 @@ export const LoginPage = () => {
     </main>
   )
 }
+
+export default LoginPage;

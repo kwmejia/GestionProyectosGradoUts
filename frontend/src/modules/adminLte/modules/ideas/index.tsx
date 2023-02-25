@@ -1,17 +1,29 @@
-import { CardIdea } from './components/idea/CardIdea';
+import { CardIdea } from './components/idea/Card';
 import './styles/_ideas.scss';
-import { useContext, useEffect } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { useIdeas } from '../../../../hooks/useIdeas';
 import { AuthContext } from '../../../../context';
+import { useFavorites } from '../../../../hooks/useFavorites';
 
-export const IdeasPage = () => {
+const IdeasPage = () => {
 
-  const { getIdeas, ideas, loader } = useIdeas();
+  const [favoritesCard, setfavoritesCard] = useState([]);
+  const { getIdeas, ideas } = useIdeas();
   const { user } = useContext(AuthContext);
+  const { getFavorites } = useFavorites();
+
+
   useEffect(() => {
-    if (user !== undefined) getIdeas(user?.email);
+    onMountedComponent();
   }, [user]);
 
+
+  const onMountedComponent = async () => {
+    if (user === undefined) return;
+    await getIdeas(user?.email);
+    const fav = await getFavorites(user?.email);
+    setfavoritesCard(fav);
+  }
 
   return (
     <>
@@ -24,11 +36,13 @@ export const IdeasPage = () => {
           </div>
         </div>
         <div
-          className="container-ideas d-flex  justify-content-center  justify-content-xl-start   flex-wrap"
+          className="container-ideas d-flex m-4 gap-4 gap-xxl-5 justify-content-center  justify-content-xl-start   flex-wrap"
         >
-          {ideas.map(idea => (<CardIdea idea={idea} key={idea.id_idea} />))}
+          {ideas.map(idea => (<CardIdea idea={idea} favorites={favoritesCard} key={idea.id_idea} />))}
         </div>
       </div>
     </>
   )
 }
+
+export default IdeasPage;

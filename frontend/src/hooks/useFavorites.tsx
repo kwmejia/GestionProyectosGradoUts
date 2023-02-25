@@ -13,9 +13,9 @@ export const useFavorites = () => {
       const res = await clientHTTP.get(`/favorites?email=${email}`);
       setFavorites(res.data);
       setIsLoadingFavorite(false);
+      return res.data;
     } catch (error) {
       setIsLoadingFavorite(false);
-
       console.log(error);
     }
   }
