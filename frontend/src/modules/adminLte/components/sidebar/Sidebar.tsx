@@ -12,14 +12,17 @@ export const Sidebar = () => {
   return (
     <section className={sideBarActive ? "sidebar active " : "sidebar"}>
       <div className="cap"></div>
-      <Slider
-        color={sideBarActive ? "#CAD225" : "#FFF"}
-        active={sideBarActive}
-        type="elastic"
-        onClick={() => setsideBarActive(!sideBarActive)}
-        width={25}
-        lineHeight={sideBarActive ? 3 : 2}
-      />
+      <div className="pt-2 px-2">
+        <Slider
+          color={sideBarActive ? "#CAD225" : "#FFF"}
+          active={sideBarActive}
+          type="elastic"
+          onClick={() => setsideBarActive(!sideBarActive)}
+          width={25}
+          lineHeight={sideBarActive ? 3 : 2}
+          padding='4px'
+        />
+      </div>
       <div className="title-sidebar px-4">Gestor de proyectos UTS</div>
 
       <nav>

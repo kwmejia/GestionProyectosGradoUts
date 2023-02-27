@@ -62,7 +62,7 @@ development.post('/cart',
 development.delete('/cart',
   [
 
-    check('carrito_id', 'El identificador carrito es necesario ').isNumeric().isEmpty().not(),
+    // check('id', 'El identificador carrito es necesario ').isNumeric().isEmpty().not(),
     validarCampos
 
   ],

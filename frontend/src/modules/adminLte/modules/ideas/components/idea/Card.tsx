@@ -1,4 +1,4 @@
-
+import { useContext, useEffect, useState } from 'react';
 import { styled } from '@mui/material/styles';
 import Card from '@mui/material/Card';
 import CardHeader from '@mui/material/CardHeader';
@@ -12,12 +12,13 @@ import { red } from '@mui/material/colors';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
-import { TypeFavorites, TypeStateIdeas } from '../../../../../../interfaces/interfacesEndPoints';
-import { useContext, useEffect, useState } from 'react';
+import { TypeCarrito, TypeFavorites, TypeStateIdeas } from '../../../../../../interfaces/interfacesEndPoints';
 import { useFavorites } from '../../../../../../hooks/useFavorites';
+import { useCarrito } from '../../../../../../hooks/useCarrito';
 import { AuthContext } from '../../../../../../context';
 import AzureGraphServices from '../../../../../../config/AzureGraphServices';
-
+import './idea.scss'
+import Swal from 'sweetalert2';
 interface ExpandMoreProps extends IconButtonProps {
   expand: boolean;
 }
@@ -36,15 +37,18 @@ const ExpandMore = styled((props: ExpandMoreProps) => {
 interface PropsCard {
   idea: TypeStateIdeas;
   favorites: TypeFavorites[];
+  carrito: TypeCarrito[];
 }
 
 
-export function CardIdea({ idea, favorites }: PropsCard) {
+export function CardIdea({ idea, favorites, carrito }: PropsCard) {
   const [expanded, setExpanded] = useState(false);
   const [isFavorite, setIsFavorite] = useState<boolean>(false);
   const [isShopping, setIsShopping] = useState<boolean>(false);
   const [urlPhoto, setUrlPhoto] = useState('');
+  const [alert, setAlert] = useState<undefined | Object>(undefined);
 
+  const { addCarrito, deleteCarrito } = useCarrito();
   const { addFavorite, deleteFavorite } = useFavorites();
   const { user } = useContext(AuthContext);
   const { nombre_idea, fecha_creacion, id_azure_docente_correo, id_idea } = idea;
@@ -56,17 +60,20 @@ export function CardIdea({ idea, favorites }: PropsCard) {
 
   useEffect(() => {
     mountedComponent();
-  }, [favorites]);
+    if (alert) Swal.fire(alert);
+  }, [favorites, alert, carrito]);
 
 
 
   const mountedComponent = async () => {
 
     await getPhotoOtherUser();
-    console.log(favorites)
     favorites.forEach(favorite => {
       if (favorite.id_idea === id_idea) setIsFavorite(true);
     })
+    carrito.forEach(carr => {
+      if (carr.id_idea === id_idea) setIsShopping(true);
+    });
   }
 
   const getPhotoOtherUser = async () => {
@@ -84,7 +91,19 @@ export function CardIdea({ idea, favorites }: PropsCard) {
     deleteFavorite(id_idea as number);
   }
 
-  const changeShopping = () => {
+  const changeShopping = async () => {
+    if (isShopping) {
+      await deleteCarrito(user?.email, id_idea as number);
+      setIsShopping(false);
+      return;
+    }
+    const res = await addCarrito(user?.email, id_idea as number);
+    if (res?.data.error) {
+      setAlert({ title: res.data.error, icon: 'error' });
+      return;
+    }
+
+    setAlert({ title: 'Idea agregada al carrito', icon: 'success' })
     setIsShopping(!isShopping);
   }
 
@@ -93,7 +112,6 @@ export function CardIdea({ idea, favorites }: PropsCard) {
       <CardHeader
         avatar={
           <Avatar sx={{ bgcolor: red[500] }} src={urlPhoto} aria-label="recipe">
-
           </Avatar>
         }
 
@@ -111,8 +129,8 @@ export function CardIdea({ idea, favorites }: PropsCard) {
         <IconButton aria-label="add to favorites" onClick={changeFavorite}>
           <FavoriteIcon style={{ color: isFavorite ? "red" : '' }} />
         </IconButton>
-        <IconButton aria-label="share">
-          <ShoppingCartIcon style={{ color: isShopping ? "red" : '' }} />
+        <IconButton aria-label="share" onClick={changeShopping}>
+          <ShoppingCartIcon style={{ color: isShopping ? "#0B4A75" : '' }} />
         </IconButton>
         <ExpandMore
           expand={expanded}

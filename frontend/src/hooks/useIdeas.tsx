@@ -12,6 +12,7 @@ export const useIdeas = () => {
       const response = await clienteHTTP.get(`/obtenerIdeas?correo=${email}&checkDe=${checkDe}&checkIn=${checkIn}`);
       setIdeas(response.data.result);
       setLoader(false);
+      return response.data.result;
     } catch (error) {
       setLoader(false)
       console.log(error);
