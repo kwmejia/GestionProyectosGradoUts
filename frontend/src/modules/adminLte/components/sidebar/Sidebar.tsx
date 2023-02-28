@@ -37,7 +37,7 @@ export const Sidebar = () => {
             <FontAwesomeIcon icon={faHeart} className="icon" />
             <span>Favoritos</span>
           </NavLink>
-          <a href="#" className="link-container">
+          <a href="/carrito" className="link-container">
             <FontAwesomeIcon icon={faShoppingCart} className="icon" />
             <span>Carrito</span>
           </a>

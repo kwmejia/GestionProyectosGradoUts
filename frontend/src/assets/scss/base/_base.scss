@@ -74,6 +74,10 @@ p {
   overflow-y: auto;
 }
 
+.fadeIn {
+  animation: fadeIn .3s linear !important;
+}
+
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',

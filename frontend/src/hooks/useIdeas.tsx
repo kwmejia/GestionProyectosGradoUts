@@ -5,12 +5,12 @@ import clienteHTTP from '../api/configAxios';
 export const useIdeas = () => {
   const [ideas, setIdeas] = useState<TypeStateIdeas[]>([]);
   const [ideasFavorites, setIdeasFavorites] = useState<TypeStateIdeas[]>([])
-  const [loader, setLoader] = useState<boolean>(false);
+  const [loader, setLoader] = useState<boolean>(true);
+  const [loaderIdeasFavorites, setLoaderIdeasFavorites] = useState<boolean>(true);
 
   const getIdeas = async (email: string | undefined, checkDe: boolean = true, checkIn: boolean = true) => {
 
     try {
-      setLoader(true);
       const response = await clienteHTTP.get(`/obtenerIdeas?correo=${email}&checkDe=${checkDe}&checkIn=${checkIn}`);
       setIdeas(response.data.result);
       setLoader(false);
@@ -24,14 +24,14 @@ export const useIdeas = () => {
 
   const getIdeasFavorites = async (email: string | undefined) => {
     try {
-      setLoader(true);
+      setLoaderIdeasFavorites(true);
       const response = await clienteHTTP.get(`/obtenerIdeasFavoritas?correo=${email}`);
       console.log(response)
       setIdeasFavorites(response.data);
-      setLoader(false);
+      setLoaderIdeasFavorites(false);
       return response.data;
     } catch (error) {
-      setLoader(false)
+      setLoaderIdeasFavorites(false)
       console.log(error);
     }
   }
@@ -41,6 +41,7 @@ export const useIdeas = () => {
     loader,
     getIdeas,
     getIdeasFavorites,
-    ideasFavorites
+    ideasFavorites,
+    loaderIdeasFavorites
   };
 }

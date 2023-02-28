@@ -13,9 +13,10 @@ const FavoritesPage = () => {
   const [ideasCard, setIdeasCard] = useState<TypeStateIdeas[]>([]);
   const [carritoCard, setCarritoCard] = useState<TypeCarrito[]>([]);
   const [favoritesCard, setfavoritesCard] = useState<TypeFavorites[]>([]);
+  const [existIdeas, setExistIdeas] = useState<boolean>();
   const { user } = useContext(AuthContext);
 
-  const { getIdeasFavorites, loader } = useIdeas();
+  const { getIdeasFavorites, loaderIdeasFavorites } = useIdeas();
   const { getFavorites, favorites } = useFavorites();
   const { getCarrito } = useCarrito();
 
@@ -35,8 +36,8 @@ const FavoritesPage = () => {
   }
   return (
     <>
-      <div className={ideasCard.length ? "ideas px-0 px-xxl-3 mt-3 w-100 h-100" : "ideas px-0 px-xxl-3 mt-3 w-100 h-100vh d-flex flex-column justy-content-center aling-items-center"} >
-        <div className="w-100 text-center d-flex flex-column align-items-center justify-content-center gap-5" >
+      <div className={ideasCard.length ? "ideas px-0 px-xxl-3 mt-3 w-100 h-100 fadeIn " : "ideas px-0 px-xxl-3 mt-3 w-100 h-100vh d-flex flex-column justy-content-center aling-items-center fadeIn "} >
+        <div className="w-100 text-center d-flex flex-column align-items-center justify-content-center gap-5 fadeIn " >
           <h2 className="title-section mt-2 text-center text-title mt-4">
             {ideasCard.length
               ? 'Ideas Favoritas'
@@ -48,8 +49,8 @@ const FavoritesPage = () => {
         <div
           className="container-ideas w-100 d-flex m-4 gap-4 gap-xxl-5 justify-content-center  justify-content-xl-start flex-wrap"
         >
-          {loader
-            ? <IdeaSkeletonComponent loader={loader} />
+          {loaderIdeasFavorites
+            ? <IdeaSkeletonComponent loader={loaderIdeasFavorites} />
             : ideasCard && ideasCard.map((idea, index) => (
               <CardIdea
                 idea={idea}
