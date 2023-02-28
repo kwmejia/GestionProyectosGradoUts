@@ -4,6 +4,7 @@ const { check } = require('express-validator');
 //const { obtenerCart,mrInsertCart,deleteCart, obtenerFav, insertFav, deleteFav, ideaTomada } = require('../helpers/helpers');
 const { validarCampos } = require('../middlewares/validar-campos');
 const { myValidacion, todasIdeas, todasProfesor, ideaTomadaModel, cartModel, cartModel_post, cartModel_delete, favModel, favMode_delete, favModel_insert } = require('../models/models');
+const { ideas_favoritas } = require('../models/ideas_favoritas_get')
 // Our middleware to verify correct Entity and data
 
 development.use(function timeLog(req, res, next) {
@@ -23,6 +24,14 @@ development.get('/obtenerIdeas',
     validarCampos
   ],
   todasIdeas);
+
+
+development.get('/obtenerIdeasFavoritas',
+  [
+    check('correo', 'El correo es obligatorio').isEmail(),
+    validarCampos
+  ],
+  ideas_favoritas);
 
 /* development.get('/obtenerIdeasProfesor',
   [

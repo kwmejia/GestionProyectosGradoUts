@@ -1,8 +1,8 @@
-const { validacionUsuario,obtenerIdea,obtenerIdeaProfesor,ideaTomada } = require('./ideas/ideas_module');
+const { validacionUsuario, obtenerIdea, obtenerIdeaProfesor, ideaTomada, obtenerIdeasFavoritas } = require('./ideas/ideas_module');
 //CART imports
-const { obtenerCart, mrInsertCart,deleteCart} = require ('./carrito/carrito_module')
+const { obtenerCart, mrInsertCart, deleteCart } = require('./carrito/carrito_module')
 //FAVS imports
-const { obtenerFav, deleteFav, insertFav} = require ('./favoritos/favoritos_module')
+const { obtenerFav, deleteFav, insertFav } = require('./favoritos/favoritos_module')
 module.exports = {
 
     validacionUsuario,
@@ -14,6 +14,6 @@ module.exports = {
     deleteCart,
     obtenerFav,
     deleteFav,
-    insertFav
-    
+    insertFav,
+    obtenerIdeasFavoritas
 }
