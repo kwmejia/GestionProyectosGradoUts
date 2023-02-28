@@ -5,6 +5,8 @@ export interface TypeStateIdeas {
   id_tipo_idea?: string;
   aprovado?: boolean;
   fecha_creacion?: string;
+  id_carrito?: number;
+  correo_estudiante?: string;
 }
 
 export interface TypeTypesIdeas {
@@ -30,8 +32,12 @@ export interface TypeFavorites {
 }
 
 export interface TypeCarrito {
-  id_carrito: number;
-  id_idea: number;
-  nombre_idea: string;
-  correo_estudiante: string;
+  id_idea?: number;
+  nombre_idea?: string;
+  id_azure_docente_correo?: string;
+  id_tipo_idea?: string;
+  aprovado?: boolean;
+  fecha_creacion?: string;
+  id_carrito?: number;
+  correo_estudiante?: string;
 }

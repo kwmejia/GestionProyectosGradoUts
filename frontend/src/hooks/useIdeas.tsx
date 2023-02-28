@@ -26,7 +26,6 @@ export const useIdeas = () => {
     try {
       setLoaderIdeasFavorites(true);
       const response = await clienteHTTP.get(`/obtenerIdeasFavoritas?correo=${email}`);
-      console.log(response)
       setIdeasFavorites(response.data);
       setLoaderIdeasFavorites(false);
       return response.data;
