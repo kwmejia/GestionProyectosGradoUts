@@ -7,6 +7,8 @@ export interface TypeStateIdeas {
   fecha_creacion?: string;
   id_carrito?: number;
   correo_estudiante?: string;
+  descripcion_idea?: string;
+  nombre?: string;
 }
 
 export interface TypeTypesIdeas {
@@ -40,4 +42,6 @@ export interface TypeCarrito {
   fecha_creacion?: string;
   id_carrito?: number;
   correo_estudiante?: string;
+  descripcion_idea?: string;
+  nombre?: string;
 }

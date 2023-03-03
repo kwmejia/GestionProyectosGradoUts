@@ -19,6 +19,7 @@ export const AppRouter = () => {
           <Route index element={<IdeasPage />} />
           <Route path='favoritos' element={<FavoritesPage />} />
           <Route path='carrito' element={<CarritoPage />} />
+          <Route path='mis-ideas-compradas' element={<CarritoPage />} />
         </Route>
       </Routes>
     </>

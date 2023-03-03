@@ -19,6 +19,7 @@ export const useCarrito = () => {
   const addCarrito = async (email: string | undefined, id_idea: number) => {
     try {
       const res = await clienteHTTP.post('/cart', { email, id_idea });
+      await clienteHTTP.put(`/addCarritoIdea?id=${id_idea}`);
       return res;
     } catch (error) {
       console.log(error);
@@ -28,6 +29,7 @@ export const useCarrito = () => {
   const deleteCarrito = async (email: string | undefined, id_idea: number) => {
     try {
       await clienteHTTP.delete(`/cart?correo=${email}&id=${id_idea}`);
+      await clienteHTTP.put(`/deleteCarritoIdea?id=${id_idea}`);
     } catch (error) {
       console.log(error);
     }

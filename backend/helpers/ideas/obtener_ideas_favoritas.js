@@ -3,7 +3,7 @@ const { connection } = require("../../conexion/conexion")
 const obtenerIdeasFavoritas = (email) => {
   return new Promise((resolve, reject) => {
     connection.query(
-      `SELECT  ideas.id_idea, ideas.nombre_idea, ideas.id_azure_docente_correo, tipo_ideas.nombre, ideas.aprovado, ideas.fecha_creacion
+      `SELECT  ideas.id_idea, ideas.nombre_idea, ideas.id_azure_docente_correo, tipo_ideas.nombre, ideas.aprovado, ideas.fecha_creacion, descripcion_idea, ideas.id_tipo_idea
       FROM ideas_favoritas
       INNER JOIN ideas ON
       ideas_favoritas.id_idea = ideas.id_idea
