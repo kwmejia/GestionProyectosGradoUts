@@ -9,6 +9,7 @@ const obtenerIdeasFavoritas = (email) => {
       ideas_favoritas.id_idea = ideas.id_idea
       INNER JOIN tipo_ideas ON tipo_ideas.id_tipo_idea = ideas.id_tipo_idea
       WHERE ideas.aprovado = 1
+      AND ideas.tomada = 0
       AND ideas_favoritas.correo_estudiante = ? ;`,
       [email],
       function (error, results, fields) {

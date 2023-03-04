@@ -24,11 +24,13 @@ header {
     .name {
       text-transform: capitalize;
       color: $black;
+      font-weight: 500;
       margin: 0;
     }
 
     .role {
-      color: $grey-lightest;
+      color: #222;
+
       margin: 0;
       font-size: 12px;
     }

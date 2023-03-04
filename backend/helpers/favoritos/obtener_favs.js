@@ -6,7 +6,8 @@ const obtenerFav = (email) => {
       FROM ideas_favoritas
       INNER JOIN ideas ON
       ideas_favoritas.id_idea = ideas.id_idea
-      WHERE ideas_favoritas.correo_estudiante = ?`, [email],
+      WHERE ideas.tomada = 0
+      AND ideas_favoritas.correo_estudiante = ?`, [email],
             function (error, results, fields) {
                 resolve(results);
                 reject(error);
