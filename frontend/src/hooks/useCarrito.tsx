@@ -19,7 +19,9 @@ export const useCarrito = () => {
   const addCarrito = async (email: string | undefined, id_idea: number) => {
     try {
       const res = await clienteHTTP.post('/cart', { email, id_idea });
-      await clienteHTTP.put(`/addCarritoIdea?id=${id_idea}`);
+      if (!res?.data.error) {
+        await clienteHTTP.put(`/addCarritoIdea?id=${id_idea}`);
+      }
       return res;
     } catch (error) {
       console.log(error);

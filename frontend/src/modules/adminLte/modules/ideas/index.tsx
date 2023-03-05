@@ -78,7 +78,7 @@ const IdeasPage = () => {
 
         </div>
         <div
-          className={ideasCard.length ? "container-ideas w-100 d-flex mt-4 mx-4 gap-4 gap-xxl-5 justify-content-center  justify-content-xl-start   flex-wrap" : ''}
+          className={"container-ideas w-100 d-flex mt-4 mx-4 gap-4 gap-xxl-5 justify-content-center  justify-content-xl-start   flex-wrap"}
         >
           {loader
             ? <IdeaSkeletonComponent loader={loader} />

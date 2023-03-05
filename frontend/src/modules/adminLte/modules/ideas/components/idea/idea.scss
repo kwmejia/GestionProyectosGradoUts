@@ -2,6 +2,8 @@
 
 
 .card-container {
+  height: max-content;
+  min-height: 283px;
 
   .cardActive {
     position: absolute;

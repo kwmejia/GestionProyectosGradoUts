@@ -13,6 +13,37 @@ const ideaTomada = () => {
   });
 };
 
+
+const postData = (body) => {
+  const { estado, cooldown, correo, idIdea, fechaAceptado } = body;
+  const pago = 0;
+  return new Promise((resolve, reject) => {
+    connection.query(
+      `INSERT INTO idea_tomada (estado, estado_pago, id_azure_estudiante_correo, id_idea) VALUES (?,?,?,? )`,
+      [estado, pago, correo, idIdea],
+      function (error, results, fields) {
+        resolve(results);
+        reject(error);
+      }
+    );
+  })
+}
+
+
+const getById = (id) => {
+  return new Promise((resolve, reject) => {
+    connection.query(`Select * FROM idea_tomada WHERE id_idea = ${id}`,
+      [],
+      function (error, results) {
+        resolve(results);
+        reject(error);
+      }
+    );
+  })
+}
+
 module.exports = {
-  ideaTomada
+  ideaTomada,
+  postData,
+  getById
 };

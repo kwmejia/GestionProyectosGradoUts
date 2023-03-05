@@ -45,3 +45,14 @@ export interface TypeCarrito {
   descripcion_idea?: string;
   nombre?: string;
 }
+
+
+export interface TypeIdeaTomada {
+  id_idea_tomada?: number;
+  estado?: string;
+  estado_pago?: number;
+  cooldown?: string;
+  id_azure_estudiante_correo?: string;
+  id_idea?: number;
+  fecha_aceptado: string;
+}

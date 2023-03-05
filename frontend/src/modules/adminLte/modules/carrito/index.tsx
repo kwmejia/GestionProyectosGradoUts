@@ -4,9 +4,9 @@ import { TypeCarrito, TypeFavorites, TypeStateIdeas } from '../../../../interfac
 import { useIdeas } from '../../../../hooks/useIdeas';
 import { useFavorites } from '../../../../hooks/useFavorites';
 import { useCarrito } from '../../../../hooks/useCarrito';
-import { IdeaSkeletonComponent } from '../../../shared/components/skeletons/ideaSkeleton/IdeaSkeletonComponent';
-import { CardIdea } from '../ideas/components/idea/Card';
 import iconSrc from "../../../../assets/img/iconSad.png";
+import { AccordionIdea } from './components/accordionIdea/AccordionIdea';
+import { ActionsCarrito } from './components/actionsCarrito/ActionsCarrito';
 
 const CarritoPage = () => {
   const [ideasCard, setIdeasCard] = useState<TypeStateIdeas[]>([]);
@@ -46,29 +46,27 @@ const CarritoPage = () => {
         </div>
 
         <div
-          className="container-ideas w-100 d-flex m-4 gap-4 gap-xxl-5 justify-content-center   flex-wrap"
+          className="w-100 row mt-4 flex-wrap"
         >
-          {loaderIdeasFavorites
-            ? <IdeaSkeletonComponent loader={loaderIdeasFavorites} />
-            : ideasCard && carritoCard.map((idea, index) => (
-              <CardIdea
-                idea={idea}
-                favorites={favoritesCard}
+          <div className="col-md-8 px-5">
+            {carritoCard.length ? <AccordionIdea
+              idea={carritoCard[0]}
+              favorites={favoritesCard}
+              carrito={carritoCard}
+            />
+              : ''}
+          </div>
+          <div className="col-md-4 ps-0 d-flex justify-content-center">
+            {carritoCard.length ?
+              <ActionsCarrito
+                idea={carritoCard[0]}
                 carrito={carritoCard}
-                key={index}
               />
-            ))
-          }
+              : ''
+            }
+          </div>
         </div>
-        {carritoCard.length &&
-          (
-            <div className="text-center">
-              <a
-                href="https://gdeco.uts.edu.co/pagosuts/info.php?bulletProofEco=953b93636d18ede47a869c67e131de41"
-                target="_blank"
-                className="btn btn-primary">Finalizar Compra</a>
-            </div>
-          )}
+
       </div>
     </>
   )

@@ -1,0 +1,24 @@
+.cont-action {
+  background: #fff;
+  box-shadow: 0px 3px 6px #0000001a;
+  // border-radius: 10px;
+  color: #344563;
+  font-size: 18px;
+  font-weight: 500;
+  width: 80%;
+  padding: 15px;
+  height: min-content;
+
+  .text-des {
+    width: max-content;
+    cursor: pointer;
+
+    &.name-user {
+      text-transform: capitalize;
+    }
+
+    margin: 10px !important;
+    font-size: 14px;
+    color: #344563;
+  }
+}

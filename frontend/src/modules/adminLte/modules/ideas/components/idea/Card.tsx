@@ -100,11 +100,26 @@ export function CardIdea({ idea, favorites, carrito }: PropsCard) {
     }
     const res = await addCarrito(user?.email, id_idea as number);
     if (res?.data.error) {
-      setAlert({ title: res.data.error, icon: 'error' });
+      setAlert({
+        title: res.data.error,
+        icon: 'error',
+        toast: true,
+        position: 'bottom-end',
+        timer: 5000,
+        showConfirmButton: false,
+      });
       return;
     }
 
-    setAlert({ title: 'Idea agregada al carrito', icon: 'success' })
+    setAlert({
+      title: 'Idea agregada al carrito',
+      icon: 'success',
+      toast: true,
+      position: 'bottom-end',
+      timer: 5000,
+      showConfirmButton: false,
+      iconColor: "#c3d730"
+    })
     setIsShopping(!isShopping);
   }
 

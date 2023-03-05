@@ -31,13 +31,19 @@ export default class AzureGraphServices {
     } catch (error) {
       return "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460__340.png";
     }
+  }
 
-
+  static async getUserByEmail(email: string) {
+    this.ensureClient(this.authProvider);
+    try {
+      const user = await graphClient?.api(`/users/${email}`).get();
+      return user;
+    } catch (error) {
+      console.log(error);
+    }
   }
 
   static async getPhoto() {
-
-
     this.ensureClient(this.authProvider);
     const photo = await graphClient?.api('me/photo/$value')
       .get();

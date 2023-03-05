@@ -56,7 +56,7 @@ const SkeletonSingle = () => {
           </div>
 
         </Col>
-      </Stack>q
+      </Stack>
     </Col>
   )
 }

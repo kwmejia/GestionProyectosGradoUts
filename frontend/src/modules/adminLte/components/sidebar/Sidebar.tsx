@@ -13,7 +13,7 @@ export const Sidebar = () => {
     <section className={sideBarActive ? "sidebar active " : "sidebar"}>
       <div className="cap"></div>
       <div className="pt-2 px-2">
-        <Slider
+        {/* <Slider
           color={sideBarActive ? "#CAD225" : "#FFF"}
           active={sideBarActive}
           type="elastic"
@@ -21,7 +21,8 @@ export const Sidebar = () => {
           width={25}
           lineHeight={sideBarActive ? 3 : 2}
           padding='4px'
-        />
+        /> */}
+        <button onClick={() => setsideBarActive(!sideBarActive)}>x</button>
       </div>
       <div className="title-sidebar px-4">Gestor de proyectos UTS</div>
 
@@ -37,10 +38,10 @@ export const Sidebar = () => {
             <FontAwesomeIcon icon={faHeart} className="icon" />
             <span>Favoritos</span>
           </NavLink>
-          <a href="/carrito" className="link-container">
+          <NavLink to="/carrito" className="link-container">
             <FontAwesomeIcon icon={faShoppingCart} className="icon" />
             <span>Carrito</span>
-          </a>
+          </NavLink>
         </section>
 
         <section>
