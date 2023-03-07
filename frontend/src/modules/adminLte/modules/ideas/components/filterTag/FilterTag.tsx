@@ -12,7 +12,6 @@ export const FilterTag = ({ setTypeName, typeName }: any) => {
     { id: 2, nombre: 'Monografía' },
     { id: 3, nombre: 'Emprendimiento' },
     { id: 4, nombre: 'Investigación' },
-
   ]
 
   return (

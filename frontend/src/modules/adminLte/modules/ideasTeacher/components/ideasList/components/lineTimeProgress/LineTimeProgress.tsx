@@ -1,6 +1,11 @@
 import './lineTimeProgress.scss#c3d730';
 
-export const LineTimeProgress = () => {
+
+interface PropsLineTimeProgress {
+  approved: boolean | undefined;
+}
+
+export const LineTimeProgress = ({ approved }: PropsLineTimeProgress) => {
   return (
     <div
       className="line-time d-flex w-75 justify-content-between align-items-center"
@@ -10,7 +15,7 @@ export const LineTimeProgress = () => {
         <span>Propuesta</span>
       </div>
 
-      <div className="circle">
+      <div className={approved ? "activeTime circle" : "circle"}>
         <span>Aprovada</span>
       </div>
 

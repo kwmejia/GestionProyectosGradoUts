@@ -56,3 +56,16 @@ export interface TypeIdeaTomada {
   id_idea?: number;
   fecha_aceptado: string;
 }
+
+export interface TypeIdeasTeacher {
+  id_idea?: number;
+  nombre_idea?: string;
+  id_azure_docente_correo?: string;
+  id_tipo_idea?: string;
+  aprovado?: boolean;
+  fecha_creacion?: string;
+  id_carrito?: number;
+  correo_estudiante?: string;
+  descripcion_idea?: string;
+  nombre?: string;
+}

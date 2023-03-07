@@ -5,6 +5,15 @@
   height: max-content;
   min-height: 283px;
 
+  .des-cont {
+    color: #344563 !important;
+
+    p {
+      color: #344563 !important;
+      font-family: Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    }
+  }
+
   .cardActive {
     position: absolute;
   }

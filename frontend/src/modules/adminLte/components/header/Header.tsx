@@ -43,9 +43,7 @@ export const Header = () => {
             'aria-labelledby': 'basic-button',
           }}
         >
-          <MenuItem onClick={handleClose}>Profile</MenuItem>
-          <MenuItem onClick={handleClose}>My account</MenuItem>
-          <MenuItem onClick={logOut}>Logout</MenuItem>
+          <MenuItem onClick={logOut}>Cerrar sesión </MenuItem>
         </Menu>
 
         <div className="info">

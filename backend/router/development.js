@@ -9,6 +9,8 @@ const { updateStateIdeaAddCarrito, updateStateIdeaRemoveCarrito } = require('../
 const { getNameTypeIdea } = require('../models/idea_tipo')
 const { postIdeaTomada } = require('../models/ideas_tomadas_post');
 const { getIdeaTomaPorId } = require('../models/ideas_tomadas_id_get');
+const { getIdeasProfesor } = require('../models/todas_profesor_get');
+const { insertar_idea, eliminar_idea } = require('../models/ideas_profesor_post');
 // Our middleware to verify correct Entity and data
 
 development.use(function timeLog(req, res, next) {
@@ -37,15 +39,18 @@ development.get('/obtenerIdeasFavoritas',
   ],
   ideas_favoritas);
 
-/* development.get('/obtenerIdeasProfesor',
-  [
-    check('correo', 'El correo es obligatorio').isEmail(),
-    validarCampos
-  ],
-  todasIdeas);
+development.get('/ideasProfesor',
+  // [
+  //   check('correo', 'El correo es obligatorio').isEmail(),
+  //   validarCampos
+  // ],
+  getIdeasProfesor);
 
 
- */
+development.post('/ideasProfesor', insertar_idea);
+development.delete('/ideasProfesor', eliminar_idea);
+
+
 
 development.get('/getTipoIdea', getNameTypeIdea);
 

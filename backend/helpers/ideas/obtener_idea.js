@@ -17,9 +17,11 @@ const obtenerIdea = () => {
 const obtenerIdeaProfesor = (correo) => {
   return new Promise((resolve, reject) => {
     connection.query(
-      `SELECT ideas.id_idea, ideas.nombre_idea, ideas.id_azure_docente_correo, tipo_ideas.nombre, ideas.aprovado, ideas.fecha_creacion FROM ideas 
-      INNER JOIN tipo_ideas on tipo_ideas.id_tipo_idea = ideas.id_tipo_idea WHERE ideas.aprovado = 1 
-      AND ideas.id_azure_docente_correo = ?`,
+      `SELECT ideas.id_idea, ideas.nombre_idea, ideas.id_azure_docente_correo, tipo_ideas.nombre, ideas.aprovado, ideas.fecha_creacion, descripcion_idea
+      FROM ideas
+      INNER JOIN tipo_ideas on tipo_ideas.id_tipo_idea = ideas.id_tipo_idea 
+      WHERE ideas.id_azure_docente_correo = ?
+      ORDER BY ideas.fecha_creacion DESC`,
       [correo],
       function (error, results, fields) {
         resolve(results);
