@@ -47,10 +47,10 @@ export const Sidebar = () => {
         <section>
           <hr />
           <h2 className="title-section">Docentes</h2>
-          <a href="#" className="link-container">
+          <NavLink to="/mis-ideas" className="link-container">
             <FontAwesomeIcon icon={faBoltLightning} className="icon " />
             <span> Mis ideas</span>
-          </a>
+          </NavLink>
         </section>
 
         <section>

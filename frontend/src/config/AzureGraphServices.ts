@@ -39,7 +39,7 @@ export default class AzureGraphServices {
       const user = await graphClient?.api(`/users/${email}`).get();
       return user;
     } catch (error) {
-      console.log(error);
+      return '';
     }
   }
 

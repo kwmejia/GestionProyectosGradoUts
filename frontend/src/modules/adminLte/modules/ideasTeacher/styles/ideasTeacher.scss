@@ -1,0 +1,49 @@
+@import '../../../../../assets/scss/main.scss';
+
+.ideas-teacher-container {
+  box-shadow: 0px 3px 6px #00000050;
+  width: 100%;
+  min-height: calc(100vh - 100px);
+  height: min-content;
+
+  .nav.nav-pills {
+
+    background-color: #0000 !important;
+
+
+    .nav-item {
+      margin-right: 5px !important;
+      background-color: rgb(255 255 255 / 10%) !important;
+    }
+
+    .nav-link {
+      position: relative;
+      border-radius: 0;
+      background: $white ;
+      color: $color-secondary;
+
+
+      &.active {
+        font-weight: 600;
+
+        &::before {
+          content: '';
+          position: absolute;
+          height: 2px;
+          width: 100%;
+          background-color: $color-secondary;
+          bottom: 0;
+          left: 0;
+          animation: animationTab .2s linear;
+        }
+      }
+    }
+  }
+}
+
+
+@keyframes animationTab {
+  0% {
+    width: 0%;
+  }
+}

@@ -49,10 +49,8 @@ const CarritoPage = () => {
           className="w-100 row mt-4 flex-wrap"
         >
           <div className="col-md-8 px-5">
-            {carritoCard.length ? <AccordionIdea
+            {carritoCard?.length ? <AccordionIdea
               idea={carritoCard[0]}
-              favorites={favoritesCard}
-              carrito={carritoCard}
             />
               : ''}
           </div>

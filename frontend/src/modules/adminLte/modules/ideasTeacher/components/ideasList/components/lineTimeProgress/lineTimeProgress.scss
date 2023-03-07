@@ -1,0 +1,51 @@
+@import '../../../../../../../../assets/scss/main.scss';
+
+.line-time {
+  position: relative;
+
+  .circle {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: 2px solid $white;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    background: #aaa;
+    z-index: 3;
+
+    &.activeTime {
+      background: $general !important;
+    }
+
+    span {
+      position: absolute;
+      bottom: -20px;
+    }
+
+  }
+
+  &::before {
+    content: '';
+    position: absolute;
+    z-index: 1;
+    height: 5px;
+    width: 100%;
+    background: #aaa;
+  }
+
+  .line {
+    position: absolute;
+    z-index: 2;
+    height: 5px;
+    background: $general;
+    animation: lineAnimation .7s linear;
+  }
+}
+
+
+@keyframes lineAnimation {
+  0% {
+    width: 0;
+  }
+}

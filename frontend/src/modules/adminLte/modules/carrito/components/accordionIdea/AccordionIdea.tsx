@@ -7,15 +7,13 @@ import './accordions.scss';
 
 interface PropsAccordion {
   idea: TypeStateIdeas;
-  favorites: TypeFavorites[];
-  carrito: TypeCarrito[];
 }
 
 interface TypeDirector {
   displayName?: string;
 }
 
-export const AccordionIdea = ({ idea, favorites, carrito }: PropsAccordion) => {
+export const AccordionIdea = ({ idea }: PropsAccordion) => {
 
   const [urlPhoto, setUrlPhoto] = useState('');
   const [userDirector, setuserDirector] = useState<TypeDirector>({});

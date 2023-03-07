@@ -66,7 +66,6 @@ export function CardIdea({ idea, favorites, carrito }: PropsCard) {
 
 
   const mountedComponent = async () => {
-
     await getPhotoOtherUser();
 
     favorites.forEach(favorite => {
@@ -140,8 +139,8 @@ export function CardIdea({ idea, favorites, carrito }: PropsCard) {
         )}
       />
       <CardContent>
-        <Typography variant="body2" color="text.secondary">
-          {descripcion_idea?.substring(0, 150)} ...
+        <Typography variant="body2" color="text.secondary" dangerouslySetInnerHTML={{ __html: descripcion_idea?.substring(0, 150) as string }}>
+
         </Typography>
       </CardContent>
       <CardActions disableSpacing>
@@ -163,8 +162,8 @@ export function CardIdea({ idea, favorites, carrito }: PropsCard) {
       <Collapse in={expanded} timeout="auto" unmountOnExit>
         <CardContent>
           <h2>{nombre_idea}</h2>
-          <Typography paragraph className="description-cont">
-            {descripcion_idea}
+          <Typography paragraph className="description-cont" id="description-cont" dangerouslySetInnerHTML={{ __html: descripcion_idea as string }}>
+
           </Typography>
 
 
