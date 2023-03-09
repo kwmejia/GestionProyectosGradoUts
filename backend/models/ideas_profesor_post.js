@@ -1,5 +1,5 @@
 
-const { postIdea, deleteIdea } = require("../helpers/ideas/insertar_ideas");
+const { postIdea, deleteIdea, updateIdeaByTeacher } = require("../helpers/ideas/insertar_ideas");
 const { response } = require("express");
 
 const insertar_idea = async (req, res = response) => {
@@ -14,8 +14,14 @@ const eliminar_idea = async (req, res = response) => {
 
 }
 
+const update_idea = async (req, res = response) => {
+  const rta = await updateIdeaByTeacher(req.body);
+  res.json(rta);
+}
+
 module.exports =
 {
   insertar_idea,
-  eliminar_idea
+  eliminar_idea,
+  update_idea
 };

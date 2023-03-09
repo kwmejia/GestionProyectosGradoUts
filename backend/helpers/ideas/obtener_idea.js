@@ -19,12 +19,29 @@ const obtenerIdeaProfesor = (correo) => {
     connection.query(
       `SELECT ideas.id_idea, ideas.nombre_idea, ideas.id_azure_docente_correo, tipo_ideas.nombre, ideas.aprovado, ideas.fecha_creacion, descripcion_idea
       FROM ideas
-      INNER JOIN tipo_ideas on tipo_ideas.id_tipo_idea = ideas.id_tipo_idea 
+      INNER JOIN tipo_ideas on tipo_ideas.id_tipo_idea = ideas.id_tipo_idea
       WHERE ideas.id_azure_docente_correo = ?
       ORDER BY ideas.fecha_creacion DESC`,
       [correo],
       function (error, results, fields) {
         resolve(results);
+        reject(error);
+      }
+    );
+  });
+};
+
+const obtenerIdeaProfesorId = (id, email) => {
+  return new Promise((resolve, reject) => {
+    connection.query(
+      `SELECT ideas.id_idea, ideas.nombre_idea, ideas.id_tipo_idea, descripcion_idea
+      FROM ideas
+      INNER JOIN tipo_ideas on tipo_ideas.id_tipo_idea = ideas.id_tipo_idea 
+      WHERE ideas.id_idea = ?
+      AND ideas.id_azure_docente_correo = ?`,
+      [id, email],
+      function (error, results, fields) {
+        resolve(results[0]);
         reject(error);
       }
     );
@@ -79,6 +96,6 @@ module.exports = {
   obtenerIdeaProfesor,
   updateIdeaAddCarrito,
   updateIdeaRemove,
-  getTypeIdea
-
+  getTypeIdea,
+  obtenerIdeaProfesorId
 };

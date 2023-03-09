@@ -6,6 +6,29 @@
   min-height: 283px;
 
   .des-cont {
+    h1 {
+      font-size: 18px;
+    }
+
+    h2 {
+      font-size: 16px;
+    }
+
+    h3 {
+      font-size: 14px;
+    }
+
+    &.des-header {
+
+      h1,
+      h2,
+      h3,
+      h4,
+      h5 {
+        font-size: 14px !important;
+      }
+    }
+
     color: #344563 !important;
 
     p {

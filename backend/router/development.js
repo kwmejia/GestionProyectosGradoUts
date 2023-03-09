@@ -9,8 +9,8 @@ const { updateStateIdeaAddCarrito, updateStateIdeaRemoveCarrito } = require('../
 const { getNameTypeIdea } = require('../models/idea_tipo')
 const { postIdeaTomada } = require('../models/ideas_tomadas_post');
 const { getIdeaTomaPorId } = require('../models/ideas_tomadas_id_get');
-const { getIdeasProfesor } = require('../models/todas_profesor_get');
-const { insertar_idea, eliminar_idea } = require('../models/ideas_profesor_post');
+const { getIdeasProfesor, getIdeaProfesorId } = require('../models/todas_profesor_get');
+const { insertar_idea, eliminar_idea, update_idea } = require('../models/ideas_profesor_post');
 // Our middleware to verify correct Entity and data
 
 development.use(function timeLog(req, res, next) {
@@ -46,9 +46,10 @@ development.get('/ideasProfesor',
   // ],
   getIdeasProfesor);
 
-
+development.get('/ideasProfesor/:id', getIdeaProfesorId);
 development.post('/ideasProfesor', insertar_idea);
 development.delete('/ideasProfesor', eliminar_idea);
+development.put('/ideasProfesor', update_idea);
 
 
 

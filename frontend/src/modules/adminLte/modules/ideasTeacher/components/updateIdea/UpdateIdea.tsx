@@ -11,8 +11,7 @@ import { useIdeasTeacher } from '../../../../../../hooks/useIdeasTeacher';
 import { AuthContext } from '../../../../../../context/AuthContext';
 import 'react-quill/dist/quill.snow.css';
 import './newIdea.scss';
-import Input from '@mui/material/Input';
-import FormHelperText from '@mui/material/FormHelperText';
+import { useNavigate, useParams } from 'react-router-dom';
 
 const NewIdea = () => {
   const [typesIdeas, setTypesIdeas] = useState([
@@ -25,45 +24,41 @@ const NewIdea = () => {
   const [typeIdea, setTypeIdea] = useState('');
   const [descriptionIdea, setDescriptionIdea] = useState('');
   const [titleIdea, setTitleIdea] = useState('');
+  const params = useParams();
+  const navigate = useNavigate();
 
-
-  const { postIdeasTeacher } = useIdeasTeacher();
+  const { updateIdeaTeacher, getIdeaTeacherById } = useIdeasTeacher();
   const { user } = useContext(AuthContext);
 
   useEffect(() => {
-    onMountedComponent();
+    if (user) onMountedComponent();
   }, [user])
 
-  const onMountedComponent = () => {
-    checkInfoSave();
+  const onMountedComponent = async () => {
+
+    const data = await getIdeaTeacherById(Number(params.id), user?.email);
+    if (!data) {
+      navigate('*')
+      return;
+    }
+
+    setTitleIdea(data.nombre_idea);
+    setTypeIdea(data.id_tipo_idea);
+    setDescriptionIdea(data.descripcion_idea);
   }
 
-  const checkInfoSave = () => {
-    const title = localStorage.getItem('titleIdea');
-    const type = localStorage.getItem('typeIdea');
-    const des = localStorage.getItem('descriptionIdea');
-    console.log(title);
-    if (title) setTitleIdea(title);
-    if (type) setTypeIdea(type);
-    if (des) setDescriptionIdea(des);
-  }
 
   const handleChange = (event: SelectChangeEvent) => {
     const { value } = event.target;
     setTypeIdea(value);
-    localStorage.setItem('typeIdea', value);
   };
 
   const onChangeTitleIdea = (title: string) => {
     setTitleIdea(title);
-    localStorage.setItem('titleIdea', title);
-    if (title === '') localStorage.removeItem('titleIdea')
   }
 
   const onChangeDescription = (description: string) => {
     setDescriptionIdea(description);
-    localStorage.setItem('descriptionIdea', description);
-    if (description === '') localStorage.removeItem('descriptionIdea')
   }
 
   const showAlertError = (msg: string) => {
@@ -98,23 +93,24 @@ const NewIdea = () => {
     }
 
     try {
-      await postIdeasTeacher(titleIdea, user?.email, typeIdea, descriptionIdea)
+      await updateIdeaTeacher(Number(params.id), titleIdea, typeIdea, descriptionIdea)
       setTitleIdea('');
       setTitleIdea('');
       setDescriptionIdea('');
       localStorage.removeItem('titleIdea');
       localStorage.removeItem('descriptionIdea');
       localStorage.removeItem('typeIdea');
-      showAlertSuccess("La idea fue creada exitosamente");
+      showAlertSuccess("La idea fue actualizada exitosamente");
+      navigate('/mis-ideas');
     } catch (error) {
-      showAlertError("Ocurrió un problema al crear la idea ");
+      showAlertError("Ocurrió un problema al actualizar la idea ");
     }
   }
 
 
   return (
     <div className="new-idea-container container mb-5 mt-4 w-100 fadeIn">
-      <h1 className="text-center my-3 text-muted">Nueva idea</h1>
+      <h1 className="text-center my-3 text-muted">Actualizar idea</h1>
       <div className="d-flex row w-100">
         <div className="col-md-8 mb-3">
           <h4 className="text-second">Titulo de la idea</h4>
@@ -160,7 +156,7 @@ const NewIdea = () => {
 
       <div className="mt-3">
         <Button variant="contained" endIcon={<SendIcon color="secondary" />} onClick={onSubmitForm}>
-          <span className="text-white">Enviar a revision</span>
+          <span className="text-white">Actualizar Idea</span>
         </Button>
       </div>
     </div>

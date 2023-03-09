@@ -1,10 +1,13 @@
 import { Container, Row, Col, Tab, Nav } from "react-bootstrap";
+import { useNavigate } from "react-router-dom";
 import { IdeasList } from './components/ideasList/IdeasList';
 import { IdeasTakenList } from './components/ideasTakenList/IdeasTakenList';
-import { NewIdea } from "./components/newIdea/NewIdea";
+import NewIdea from "./components/newIdea/NewIdea";
 import './styles/ideasTeacher.scss'
 
 const IdeasTeacher = () => {
+
+  const navigate = useNavigate();
   return (
     <section className="ideas-teacher-container m-4 fadeIn">
 
@@ -16,9 +19,6 @@ const IdeasTeacher = () => {
                 <Nav.Link eventKey="first">Mis ideas</Nav.Link>
               </Nav.Item>
               <Nav.Item>
-                <Nav.Link eventKey="second">Crear nueva idea</Nav.Link>
-              </Nav.Item>
-              <Nav.Item>
                 <Nav.Link eventKey="third">Mis ideas tomadas</Nav.Link>
               </Nav.Item>
             </Nav>
@@ -26,11 +26,6 @@ const IdeasTeacher = () => {
               <Tab.Pane eventKey="first">
                 <Row>
                   <IdeasList />
-                </Row>
-              </Tab.Pane>
-              <Tab.Pane eventKey="second">
-                <Row>
-                  <NewIdea />
                 </Row>
               </Tab.Pane>
               <Tab.Pane eventKey="third">

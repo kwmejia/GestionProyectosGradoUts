@@ -12,6 +12,7 @@ import { LineTimeProgress } from '../lineTimeProgress/LineTimeProgress';
 import { TypeIdeasTeacher } from '../../../../../../../../interfaces/interfacesEndPoints';
 import './itemIdea.scss';
 import { useIdeasTeacher } from '../../../../../../../../hooks/useIdeasTeacher';
+import { useNavigate } from 'react-router-dom';
 
 interface PropsItemIdeaTeacher {
   idea: TypeIdeasTeacher;
@@ -24,6 +25,8 @@ export const ItemIdeaTeacher = ({ idea, updateComponent, index }: PropsItemIdeaT
   const { user } = useContext(AuthContext);
   const { nombre_idea, nombre, id_azure_docente_correo, fecha_creacion, descripcion_idea, aprovado, id_idea } = idea;
   const { deleteIdeaTeacher } = useIdeasTeacher();
+  const navigate = useNavigate();
+
   useEffect(() => {
     mountedComponent();
   }, [])
@@ -62,6 +65,10 @@ export const ItemIdeaTeacher = ({ idea, updateComponent, index }: PropsItemIdeaT
         handleDeleteIdea();
       }
     })
+  }
+
+  const onUpdateIdea = () => {
+    navigate(`/editar-idea/${id_idea}`);
   }
 
   const LightTooltip = styled(({ className, ...props }: TooltipProps) => (
@@ -112,7 +119,7 @@ export const ItemIdeaTeacher = ({ idea, updateComponent, index }: PropsItemIdeaT
               <hr className="w-75" />
               <div className="mt-4 d-flex gap-4">
                 <LightTooltip title="Editar idea" placement="bottom">
-                  <Fab color="primary" aria-label="edit">
+                  <Fab color="primary" aria-label="edit" onClick={onUpdateIdea}>
                     <EditIcon color="secondary" />
                   </Fab>
                 </LightTooltip>

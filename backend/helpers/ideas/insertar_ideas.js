@@ -26,7 +26,23 @@ const deleteIdea = (id) => {
 }
 
 
+const updateIdeaByTeacher = (body) => {
+  const { title, id, type, description } = body;
+  return new Promise((resolve, reject) => {
+    connection.query(`UPDATE ideas SET nombre_idea = ?, id_tipo_idea= ?, descripcion_idea = ? WHERE id_idea = ?`,
+      [title, type, description, id],
+      function (error, results, fields) {
+        resolve(results);
+        reject(error);
+      }
+    );
+  });
+
+}
+
+
 module.exports = {
   postIdea,
-  deleteIdea
+  deleteIdea,
+  updateIdeaByTeacher
 }

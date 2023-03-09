@@ -15,6 +15,15 @@ export const useIdeasTeacher = () => {
     }
   }
 
+  const getIdeaTeacherById = async (id: number | undefined, email: string | undefined) => {
+    try {
+      const { data } = await clientHTTP.get(`/ideasProfesor/${id}?email=${email}`);
+      return data;
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
   const postIdeasTeacher = async (title: string, email: string | undefined, type: string, description: string) => {
 
     try {
@@ -41,10 +50,26 @@ export const useIdeasTeacher = () => {
     }
   }
 
+  const updateIdeaTeacher = async (id: number | undefined, title: string, type: string, description: string) => {
+    try {
+      const res = await clientHTTP.put(`/ideasProfesor`, {
+        id,
+        title,
+        type,
+        description
+      });
+      console.log(res);
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
   return {
     getIdeasTeacher,
     ideasTeacher,
     postIdeasTeacher,
-    deleteIdeaTeacher
+    deleteIdeaTeacher,
+    updateIdeaTeacher,
+    getIdeaTeacherById
   }
 }

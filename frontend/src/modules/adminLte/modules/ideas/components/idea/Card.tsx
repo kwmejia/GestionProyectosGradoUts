@@ -139,7 +139,7 @@ export function CardIdea({ idea, favorites, carrito }: PropsCard) {
         )}
       />
       <CardContent>
-        <Typography variant="body2" color="text.secondary" className="des-cont" dangerouslySetInnerHTML={{ __html: descripcion_idea?.substring(0, 150) as string }}>
+        <Typography variant="body2" color="text.secondary" className="des-cont des-header" dangerouslySetInnerHTML={{ __html: descripcion_idea?.substring(0, 150) as string }}>
 
         </Typography>
       </CardContent>
@@ -161,7 +161,7 @@ export function CardIdea({ idea, favorites, carrito }: PropsCard) {
       </CardActions>
       <Collapse in={expanded} timeout="auto" unmountOnExit>
         <CardContent>
-          <h2>{nombre_idea}</h2>
+          <h2 style={{ fontSize: 20, fontWeight: 'bold' }} className="mb-4">{nombre_idea}</h2>
           <Typography paragraph className="description-cont des-cont" id="description-cont" dangerouslySetInnerHTML={{ __html: descripcion_idea as string }}>
 
           </Typography>

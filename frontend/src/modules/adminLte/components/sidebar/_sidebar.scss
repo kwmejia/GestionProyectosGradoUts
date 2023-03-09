@@ -163,7 +163,8 @@
     position: absolute;
     width: 100%;
     background: rgba(0, 0, 0, .7);
-    height: 100%;
+    min-height: 100vh;
+    height: min-content;
     z-index: -1;
   }
 
