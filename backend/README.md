@@ -1,8 +1,6 @@
 
-<h1 align="center">Hi 👋, I'm Jhankk</h1>
-<h3 align="center">A passionate backend developer from Colombia</h3>
-
-- 🔭 I’m currently working on **Grade's Project**
+<h1 align="center">Hi 👋, I'm Kevin</h1>
+<h3 align="center">A passionate backend and frontend developer from Colombia</h3>
 
 <h3 align="left">Connect with me:</h3>
 <p align="left">
