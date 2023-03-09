@@ -1,0 +1,58 @@
+.icon-cont {
+  position: relative;
+  cursor: pointer;
+  padding: 10px;
+  margin: 10px;
+
+  span {
+    width: 30px;
+    height: 2px;
+    position: absolute;
+    background: #FAFAFA;
+    transition: .3s all;
+
+    &.active {
+      background: #c3d730;
+      height: 3px;
+    }
+  }
+
+  span:nth-child(1) {
+    top: 0px;
+    left: 0;
+    transition: .3s all;
+
+    &.active {
+      transform: rotate(45deg);
+      top: 6px;
+      left: 0;
+    }
+
+  }
+
+  span:nth-child(2) {
+    top: 6px;
+    left: 0;
+
+    transition: .3s all;
+
+    &.active {
+      opacity: 0;
+      transition: 0 all;
+    }
+
+  }
+
+  span:nth-child(3) {
+    top: 12px;
+    left: 0;
+    transition: .3s all;
+
+
+    &.active {
+      transform: rotate(-45deg);
+      top: 6px;
+    }
+  }
+
+}

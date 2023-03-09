@@ -3,27 +3,21 @@ import { useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faShoppingCart, faHeart, faLightbulb, faBoltLightning, faChartBar, faUserCog, faPlusCircle, faClipboardList } from '@fortawesome/free-solid-svg-icons'
-import AddIcon from '@mui/icons-material/Add';
-import { Slider } from "react-burgers";
+import { IconBurger } from '../../../shared/components/iconBurger/IconBurger';
 import './_sidebar.scss';
 
 export const Sidebar = () => {
 
   const [sideBarActive, setsideBarActive] = useState(false);
+
+  const handleChangeStateSidebar = () => {
+    setsideBarActive(!sideBarActive);
+  }
   return (
     <section className={sideBarActive ? "sidebar active " : "sidebar"}>
       <div className="cap"></div>
       <div className="pt-2 px-2">
-        {/* <Slider
-          color={sideBarActive ? "#CAD225" : "#FFF"}
-          active={sideBarActive}
-          type="elastic"
-          onClick={() => setsideBarActive(!sideBarActive)}
-          width={25}
-          lineHeight={sideBarActive ? 3 : 2}
-          padding='4px'
-        /> */}
-        <button onClick={() => setsideBarActive(!sideBarActive)}>x</button>
+        <IconBurger action={handleChangeStateSidebar} />
       </div>
       <div className="title-sidebar px-4">Gestor de proyectos UTS</div>
 
