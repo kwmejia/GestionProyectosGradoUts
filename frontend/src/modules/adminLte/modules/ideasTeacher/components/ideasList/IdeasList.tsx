@@ -14,6 +14,8 @@ export const IdeasList = () => {
     onMountedComponent();
   }, [user, updateComponent]);
 
+  const handleUpdateComponent = () => setUpdateComponent(!updateComponent);
+
   const onMountedComponent = async () => {
     if (user?.email) await getIdeasTeacher(user?.email);
   }
@@ -27,7 +29,7 @@ export const IdeasList = () => {
           key={index}
           idea={idea}
           index={index + 1}
-          updateComponent={setUpdateComponent}
+          updateComponent={handleUpdateComponent}
         />
       ))}
 

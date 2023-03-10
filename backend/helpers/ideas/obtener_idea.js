@@ -91,11 +91,25 @@ const getTypeIdea = (id) => {
   });
 }
 
+const getTypesIdeas = () => {
+  return new Promise((resolve, reject) => {
+    connection.query(
+      `SELECT * FROM tipo_ideas;`,
+      [],
+      function (error, results) {
+        resolve(results);
+        reject(error);
+      }
+    )
+  })
+}
+
 module.exports = {
   obtenerIdea,
   obtenerIdeaProfesor,
   updateIdeaAddCarrito,
   updateIdeaRemove,
   getTypeIdea,
-  obtenerIdeaProfesorId
+  obtenerIdeaProfesorId,
+  getTypesIdeas
 };

@@ -6,7 +6,7 @@ const { validarCampos } = require('../middlewares/validar-campos');
 const { myValidacion, todasIdeas, todasProfesor, ideaTomadaModel, cartModel, cartModel_post, cartModel_delete, favModel, favMode_delete, favModel_insert } = require('../models/models');
 const { ideas_favoritas } = require('../models/ideas_favoritas_get')
 const { updateStateIdeaAddCarrito, updateStateIdeaRemoveCarrito } = require('../models/ideasState')
-const { getNameTypeIdea } = require('../models/idea_tipo')
+const { getNameTypeIdea, getTypesIdeasModel } = require('../models/idea_tipo')
 const { postIdeaTomada } = require('../models/ideas_tomadas_post');
 const { getIdeaTomaPorId } = require('../models/ideas_tomadas_id_get');
 const { getIdeasProfesor, getIdeaProfesorId } = require('../models/todas_profesor_get');
@@ -54,6 +54,7 @@ development.put('/ideasProfesor', update_idea);
 
 
 development.get('/getTipoIdea', getNameTypeIdea);
+development.get('/getTiposIdeas', getTypesIdeasModel);
 
 development.post('/postIdeaTomada', postIdeaTomada)
 development.get('/getIdeaTomadaId', getIdeaTomaPorId)

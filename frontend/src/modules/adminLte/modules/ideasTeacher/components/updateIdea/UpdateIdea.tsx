@@ -1,4 +1,5 @@
 import { useState, useEffect, useContext } from 'react';
+import { useNavigate, useParams } from 'react-router-dom';
 import Swal from 'sweetalert2';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
@@ -11,7 +12,6 @@ import { useIdeasTeacher } from '../../../../../../hooks/useIdeasTeacher';
 import { AuthContext } from '../../../../../../context/AuthContext';
 import 'react-quill/dist/quill.snow.css';
 import './newIdea.scss';
-import { useNavigate, useParams } from 'react-router-dom';
 
 const NewIdea = () => {
   const [typesIdeas, setTypesIdeas] = useState([

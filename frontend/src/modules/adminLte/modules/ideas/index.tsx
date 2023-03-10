@@ -82,17 +82,17 @@ const IdeasPage = () => {
         >
           {loader
             ? <IdeaSkeletonComponent loader={loader} />
-            : ideasCard.length
-              ? ideasCard.map((idea, index) => (
-                <CardIdea
-                  idea={idea}
-                  favorites={favoritesCard}
-                  carrito={carritoCard}
-                  key={index}
-                />
-              ))
-              : <h1 className=" mt-5 pt-5 text-center w-100" style={{ color: '#AAAAAA', lineHeight: 1.4 }}>No se han <br /> encontrado ideas <br /> ☹</h1>
+            : ideasCard.map((idea, index) => (
+              <CardIdea
+                idea={idea}
+                favorites={favoritesCard}
+                carrito={carritoCard}
+                key={index}
+              />
+            ))
           }
+
+          {(!ideasCard.length && !loader) && (<h1 className=" mt-5 pt-5 text-center w-100" style={{ color: '#AAAAAA', lineHeight: 1.4 }}>No se han <br /> encontrado ideas <br /> ☹</h1>)}
         </div>
       </div>
     </>

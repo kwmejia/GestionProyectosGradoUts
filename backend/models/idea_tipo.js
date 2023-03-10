@@ -1,4 +1,4 @@
-const { getTypeIdea } = require('../helpers/ideas/obtener_idea')
+const { getTypeIdea, getTypesIdeas } = require('../helpers/ideas/obtener_idea')
 
 const getNameTypeIdea = async (req, res) => {
   const { id } = req.query;
@@ -8,7 +8,13 @@ const getNameTypeIdea = async (req, res) => {
 }
 
 
+const getTypesIdeasModel = async (req, res = response) => {
+  const rta = await getTypesIdeas();
+  res.json(rta);
+};
+
 module.exports = {
-  getNameTypeIdea
+  getNameTypeIdea,
+  getTypesIdeasModel
 }
 

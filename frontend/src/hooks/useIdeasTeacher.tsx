@@ -43,8 +43,7 @@ export const useIdeasTeacher = () => {
 
   const deleteIdeaTeacher = async (id: number) => {
     try {
-      const res = await clientHTTP.delete(`/ideasProfesor?id=${id}`);
-      console.log(res);
+      await clientHTTP.delete(`/ideasProfesor?id=${id}`);
     } catch (error) {
       console.log(error);
     }
@@ -52,13 +51,12 @@ export const useIdeasTeacher = () => {
 
   const updateIdeaTeacher = async (id: number | undefined, title: string, type: string, description: string) => {
     try {
-      const res = await clientHTTP.put(`/ideasProfesor`, {
+      await clientHTTP.put(`/ideasProfesor`, {
         id,
         title,
         type,
         description
       });
-      console.log(res);
     } catch (error) {
       console.log(error);
     }

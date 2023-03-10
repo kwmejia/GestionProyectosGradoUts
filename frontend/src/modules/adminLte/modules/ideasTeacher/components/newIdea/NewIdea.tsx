@@ -11,8 +11,6 @@ import { useIdeasTeacher } from '../../../../../../hooks/useIdeasTeacher';
 import { AuthContext } from '../../../../../../context/AuthContext';
 import 'react-quill/dist/quill.snow.css';
 import './newIdea.scss';
-import Input from '@mui/material/Input';
-import FormHelperText from '@mui/material/FormHelperText';
 
 const NewIdea = () => {
   const [typesIdeas, setTypesIdeas] = useState([
@@ -42,7 +40,6 @@ const NewIdea = () => {
     const title = localStorage.getItem('titleIdea');
     const type = localStorage.getItem('typeIdea');
     const des = localStorage.getItem('descriptionIdea');
-    console.log(title);
     if (title) setTitleIdea(title);
     if (type) setTypeIdea(type);
     if (des) setDescriptionIdea(des);
@@ -113,7 +110,7 @@ const NewIdea = () => {
 
 
   return (
-    <div className="new-idea-container container mb-5 mt-4 w-100 fadeIn">
+    <div className="new-idea-container px-5 px-lg-0 container mb-5 mt-4 w-100 fadeIn">
       <h1 className="text-center my-3 text-muted">Nueva idea</h1>
       <div className="d-flex row w-100">
         <div className="col-md-8 mb-3">

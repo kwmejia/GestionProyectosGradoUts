@@ -47,7 +47,7 @@ export const ItemIdeaTeacher = ({ idea, updateComponent, index }: PropsItemIdeaT
       iconColor: "#c3d730",
       position: "bottom-end"
     });
-    updateComponent(({ state }: any) => !state);
+    updateComponent();
   }
 
 

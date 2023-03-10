@@ -18,9 +18,9 @@ export const IconBurger = ({ action }: PropsBurger) => {
       className="icon-cont"
       onClick={handleClickBurger}
     >
-      <span className={active ? '' : 'active'}></span>
-      <span className={active ? '' : 'active'}></span>
-      <span className={active ? '' : 'active'}></span>
+      <span className={active ? 'active' : ''}></span>
+      <span className={active ? 'active' : ''}></span>
+      <span className={active ? 'active' : ''}></span>
     </div>
 
   )
