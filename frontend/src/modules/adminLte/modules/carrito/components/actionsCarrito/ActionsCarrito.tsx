@@ -59,7 +59,7 @@ export const ActionsCarrito = ({ idea, carrito }: PropsAction) => {
       });
       navigate("/");
     } catch (error) {
-      Swal.fire({ title: 'Ocurrio un error al limpiar el carrito', icon: 'error' })
+      Swal.fire({ title: 'Ocurrió un error al limpiar el carrito', icon: 'error' })
     }
   }
 
@@ -89,10 +89,11 @@ export const ActionsCarrito = ({ idea, carrito }: PropsAction) => {
 
   const alertConfirmDelete = () => {
     Swal.fire({
-      title: 'Estas seguro que quieres eliminar esta idea del carrito?',
+      title: '¿Estás seguro que quieres eliminar esta idea del carrito?',
       showCancelButton: true,
       confirmButtonText: 'Eliminar',
-      confirmButtonColor: "#dc2626"
+      confirmButtonColor: "#dc2626",
+      cancelButtonText: 'Cancelar',
 
     }).then((result) => {
       if (result.isConfirmed) {
@@ -103,11 +104,12 @@ export const ActionsCarrito = ({ idea, carrito }: PropsAction) => {
 
   const alertConfirmTakeIdea = () => {
     Swal.fire({
-      title: '¿Estas seguro que quieres tomar esta idea?',
-      text: 'Despues de tomar esta idea tendras que hacer el respectivo pago y no podras comprar mas ideas hasta que tu pago sea revisado.',
+      title: '¿Estás seguro que quieres tomar esta idea?',
+      text: 'Después de tomar esta idea tendrás que hacer el respectivo pago y no podrás comprar más ideas hasta que tu pago sea revisado.',
       showCancelButton: true,
       confirmButtonText: 'Tomar idea',
-      confirmButtonColor: "#c3d730"
+      confirmButtonColor: "#0B4A75",
+      cancelButtonText: 'Cancelar',
 
     }).then((result) => {
       if (result.isConfirmed) {

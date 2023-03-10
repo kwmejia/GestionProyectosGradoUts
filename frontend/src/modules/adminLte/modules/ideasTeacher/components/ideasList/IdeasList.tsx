@@ -3,6 +3,7 @@ import { ItemIdeaTeacher } from './components/itemIdeaTeacher/ItemIdeaTeacher'
 import { useEffect, useContext, useState } from 'react';
 import { useIdeasTeacher } from '../../../../../../hooks/';
 import { AuthContext } from '../../../../../../context/AuthContext';
+import iconSrc from "../../../../../../assets/img/iconSad.png";
 
 export const IdeasList = () => {
 
@@ -32,6 +33,18 @@ export const IdeasList = () => {
           updateComponent={handleUpdateComponent}
         />
       ))}
+
+      {
+        !ideasTeacher.length && (
+          <>
+            <div className="d-flex w-100 gap-3 flex-column justify-content-center align-items-center">
+              <h4 style={{color: '#777777'}}>No tienes ideas</h4>
+              <img src={iconSrc} alt="img" width={100} />
+            </div>
+          </>
+        )
+
+      }
 
     </div>
   )

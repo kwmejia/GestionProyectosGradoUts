@@ -102,10 +102,10 @@ export function CardIdea({ idea, favorites, carrito }: PropsCard) {
       setAlert({
         title: res.data.error,
         icon: 'error',
-        toast: true,
-        position: 'bottom-end',
+        position: 'center',
         timer: 5000,
-        showConfirmButton: false,
+        showConfirmButton: true,
+        confirmButtonColor: '#0B4A75',
       });
       return;
     }
@@ -113,10 +113,11 @@ export function CardIdea({ idea, favorites, carrito }: PropsCard) {
     setAlert({
       title: 'Idea agregada al carrito',
       icon: 'success',
-      toast: true,
-      position: 'bottom-end',
+      toast: false,
+      position: 'center',
       timer: 5000,
-      showConfirmButton: false,
+      showConfirmButton: true,
+      confirmButtonColor: '#0B4A75',
       iconColor: "#c3d730"
     })
     setIsShopping(!isShopping);
