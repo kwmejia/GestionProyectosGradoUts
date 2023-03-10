@@ -31,6 +31,10 @@ const obtenerIdeaProfesor = (correo) => {
   });
 };
 
+const obtenerIdeasTomadasProfesor = () => {
+
+}
+
 const obtenerIdeaProfesorId = (id, email) => {
   return new Promise((resolve, reject) => {
     connection.query(
