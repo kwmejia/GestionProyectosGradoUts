@@ -59,15 +59,18 @@ export const Sidebar = () => {
         <section>
           <hr />
           <h2 className="title-section">Administrativos</h2>
-          <NavLink to="/administrador-ideas" className="link-container">
+          <NavLink to="/estadisticas" className="link-container">
             <FontAwesomeIcon icon={faChartBar} className="icon" />
             <span>Estadisticas</span>
           </NavLink>
-          <NavLink to="/estadisticas" className="link-container">
+          <NavLink to="/administrador-ideas-propuestas" className="link-container">
             <FontAwesomeIcon icon={faUserCog} className="icon" />
-            <span>Adminstrar ideas</span>
+            <span>Adminstrar ideas profesores</span>
           </NavLink>
-
+          <NavLink to="/administrador-ideas-tomadas" className="link-container">
+            <FontAwesomeIcon icon={faUserCog} className="icon" />
+            <span>Adminstrar ideas tomadas</span>
+          </NavLink>
         </section>
       </nav>
     </section>

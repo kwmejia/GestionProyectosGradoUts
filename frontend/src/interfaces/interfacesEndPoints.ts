@@ -26,6 +26,14 @@ export interface TypeIdeasTaken {
   nombre_idea: string;
 }
 
+export interface TypeIdeasTakenTeacher {
+  id_idea: number;
+  id_azure_docente_correo: string;
+  nombre: string;
+  nombre_idea: string;
+  id_azure_estudiante_correo: string;
+  fecha_aceptado: string;
+}
 
 export interface TypeFavorites {
   id_ideaFav: number;

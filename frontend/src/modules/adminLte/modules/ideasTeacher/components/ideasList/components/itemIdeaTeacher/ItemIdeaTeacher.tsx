@@ -1,4 +1,4 @@
-import { useEffect, useContext } from 'react';
+import { useEffect, useContext, useState } from 'react';
 import Swal from 'sweetalert2';
 import Avatar from '@mui/material/Avatar';
 import Fab from '@mui/material/Fab';
@@ -13,6 +13,8 @@ import { TypeIdeasTeacher } from '../../../../../../../../interfaces/interfacesE
 import './itemIdea.scss';
 import { useIdeasTeacher } from '../../../../../../../../hooks/useIdeasTeacher';
 import { useNavigate } from 'react-router-dom';
+import { useIdeasTaken } from '../../../../../../../../hooks';
+import clientHTTP from '../../../../../../../../api/configAxios';
 
 interface PropsItemIdeaTeacher {
   idea: TypeIdeasTeacher;
@@ -22,17 +24,23 @@ interface PropsItemIdeaTeacher {
 
 export const ItemIdeaTeacher = ({ idea, updateComponent, index }: PropsItemIdeaTeacher) => {
 
+  const [isTaken, setIsTaken] = useState<boolean>(false);
   const { user } = useContext(AuthContext);
   const { nombre_idea, nombre, id_azure_docente_correo, fecha_creacion, descripcion_idea, aprovado, id_idea } = idea;
   const { deleteIdeaTeacher } = useIdeasTeacher();
+
   const navigate = useNavigate();
 
   useEffect(() => {
-    mountedComponent();
-  }, [])
+    if (user) mountedComponent();
+  }, [user, idea])
 
   const mountedComponent = async () => {
-
+    try {
+      const { data } = await clientHTTP.get(`/getIdeaTomadaId?id=${idea.id_idea}`);
+      data.length ? setIsTaken(true) : setIsTaken(false)
+    } catch (error) {
+    }
   }
 
   const handleDeleteIdea = async () => {
@@ -113,6 +121,7 @@ export const ItemIdeaTeacher = ({ idea, updateComponent, index }: PropsItemIdeaT
               <div className="cont-line-time mb-5 mt-3">
                 <LineTimeProgress
                   approved={aprovado as boolean}
+                  taken={isTaken}
                 />
               </div>
 

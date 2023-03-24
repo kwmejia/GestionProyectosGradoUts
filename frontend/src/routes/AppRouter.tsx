@@ -11,6 +11,7 @@ const IdeasTeacher = lazy(() => import('../modules/adminLte/modules/ideasTeacher
 const NewIdea = lazy(() => import('../modules/adminLte/modules/ideasTeacher/components/newIdea/NewIdea'));
 const UpdateIdea = lazy(() => import('../modules/adminLte/modules/ideasTeacher/components/updateIdea/UpdateIdea'));
 const IdeasAdmin = lazy(() => import('../modules/adminLte/modules/admin/ideasAdmin'))
+const IdeasTaken = lazy(() => import('../modules/adminLte/modules/admin/ideasTakenAdmin'))
 const Statistics = lazy(() => import('../modules/adminLte/modules/admin/statistics'))
 
 
@@ -27,7 +28,8 @@ export const AppRouter = () => {
           <Route path='mis-ideas' element={<IdeasTeacher />} />
           <Route path='crear-idea' element={<NewIdea />} />
           <Route path='editar-idea/:id' element={<UpdateIdea />} />
-          <Route path='administrador-ideas' element={<IdeasAdmin />} />
+          <Route path='administrador-ideas-propuestas' element={<IdeasAdmin />} />
+          <Route path='administrador-ideas-tomadas' element={<IdeasTaken />} />
           <Route path='estadisticas' element={<Statistics />} />
         </Route>
       </Routes>

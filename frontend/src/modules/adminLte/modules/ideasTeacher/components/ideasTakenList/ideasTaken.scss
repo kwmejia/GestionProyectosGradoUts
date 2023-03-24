@@ -1,0 +1,21 @@
+ .table-container {
+   padding: 10px 40px;
+
+   .table {
+     text-align: left;
+     // border-collapse: collapse;
+     border: 2px solid #fafafa10;
+     border-radius: 10px;
+     color: #000;
+     padding: 20px;
+
+     thead {
+       background: #0B4A75;
+       color: #FAFAFA;
+     }
+
+     tr:nth-child(even) {
+       background: rgba(0, 0, 0, .1);
+     }
+   }
+ }

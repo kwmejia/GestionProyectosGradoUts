@@ -31,8 +31,21 @@ const obtenerIdeaProfesor = (correo) => {
   });
 };
 
-const obtenerIdeasTomadasProfesor = () => {
-
+const obtenerIdeasTomadasProfesor = (email) => {
+  return new Promise((resolve, reject) => {
+    connection.query(
+      `SELECT ideas.id_idea, ideas.id_azure_docente_correo, tipo_ideas.nombre, ideas.nombre_idea, idea_tomada.id_azure_estudiante_correo, idea_tomada.fecha_aceptado
+      FROM ideas
+      INNER JOIN idea_tomada ON  idea_tomada.id_idea = ideas.id_idea
+      INNER JOIN tipo_ideas ON tipo_ideas.id_tipo_idea = ideas.id_tipo_idea
+      WHERE ideas.id_azure_docente_correo = ?`,
+      [email],
+      function (error, results) {
+        resolve(results);
+        reject(error);
+      }
+    )
+  })
 }
 
 const obtenerIdeaProfesorId = (id, email) => {
@@ -115,5 +128,6 @@ module.exports = {
   updateIdeaRemove,
   getTypeIdea,
   obtenerIdeaProfesorId,
-  getTypesIdeas
+  getTypesIdeas,
+  obtenerIdeasTomadasProfesor
 };

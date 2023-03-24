@@ -1,5 +1,5 @@
 const { response, query } = require("express");
-const { obtenerIdeaProfesor, obtenerIdeaProfesorId } = require("../helpers/ideas/obtener_idea");
+const { obtenerIdeaProfesor, obtenerIdeaProfesorId, obtenerIdeasTomadasProfesor } = require("../helpers/ideas/obtener_idea");
 
 const getIdeasProfesor = async (req, res = response) => {
   const { email } = req.query;
@@ -14,7 +14,14 @@ const getIdeaProfesorId = async (req, res = response) => {
   res.json(rta);
 }
 
+const getIdeasTomadasProfesor = async (req, res = response) => {
+  const { email } = req.query;
+  const rta = await obtenerIdeasTomadasProfesor(email);
+  res.json(rta)
+}
+
 module.exports = {
   getIdeasProfesor,
-  getIdeaProfesorId
+  getIdeaProfesorId,
+  getIdeasTomadasProfesor
 };

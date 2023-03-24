@@ -1,7 +1,7 @@
 import React from 'react'
 import clientHTTP from '../api/configAxios';
 import { useState } from 'react';
-import { TypeIdeasTaken } from '../interfaces/interfacesEndPoints';
+import { TypeIdeasTaken, TypeIdeasTakenTeacher } from '../interfaces/interfacesEndPoints';
 
 
 export interface paramsIdeaTaken {
@@ -16,6 +16,7 @@ export const useIdeasTaken = () => {
 
   const [ideaTaken, setIdeaTaken] = useState<TypeIdeasTaken[]>([]);
   const [isLoadingIdeasTaken, setisLoadingIdeasTaken] = useState<boolean>(false);
+  const [ideasTakenTeacher, setIdeasTakenTeacher] = useState<TypeIdeasTakenTeacher[]>([])
 
   const insertIdeaTaken = async (idea: paramsIdeaTaken) => {
     try {
@@ -45,10 +46,21 @@ export const useIdeasTaken = () => {
     }
   }
 
+  const getIdeasTakenTeacher = async (email: string | undefined) => {
+    try {
+      const res = await clientHTTP.get(`/ideasTomadasProfesor?email=${email}`);
+      setIdeasTakenTeacher(res.data);
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
   return {
     insertIdeaTaken,
     getIdeaTakenById,
     isLoadingIdeasTaken,
-    ideaTaken
+    ideaTaken,
+    ideasTakenTeacher,
+    getIdeasTakenTeacher
   }
 }
