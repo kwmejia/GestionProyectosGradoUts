@@ -8,9 +8,11 @@ const { ideas_favoritas } = require('../models/ideas_favoritas_get')
 const { updateStateIdeaAddCarrito, updateStateIdeaRemoveCarrito } = require('../models/ideasState')
 const { getNameTypeIdea, getTypesIdeasModel } = require('../models/idea_tipo')
 const { postIdeaTomada } = require('../models/ideas_tomadas_post');
+const { getAllIdeas } = require('../models/idea_tomada_get');
 const { getIdeaTomaPorId } = require('../models/ideas_tomadas_id_get');
 const { getIdeasProfesor, getIdeaProfesorId, getIdeasTomadasProfesor } = require('../models/todas_profesor_get');
 const { insertar_idea, eliminar_idea, update_idea } = require('../models/ideas_profesor_post');
+const { approveIdea, disapproveIdea } = require('../models/ideasState');
 // Our middleware to verify correct Entity and data
 
 development.use(function timeLog(req, res, next) {
@@ -124,6 +126,13 @@ development.post('/favorites',
 
   ],
   favModel_insert);
+
+
+//Administración
+development.get('/adminIdeasGet', getAllIdeas);
+
+development.put('/approveIdea', approveIdea);
+development.put('/disapproveIdea', disapproveIdea);
 
 module.exports = {
   development

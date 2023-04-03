@@ -4,6 +4,7 @@ import clienteHTTP from '../api/configAxios';
 
 export const useIdeas = () => {
   const [ideas, setIdeas] = useState<TypeStateIdeas[]>([]);
+  const [allIdeas, setAllIdeas] = useState<TypeStateIdeas[]>([]);
   const [ideasFavorites, setIdeasFavorites] = useState<TypeStateIdeas[]>([])
   const [loader, setLoader] = useState<boolean>(true);
   const [loaderIdeasFavorites, setLoaderIdeasFavorites] = useState<boolean>(true);
@@ -17,6 +18,17 @@ export const useIdeas = () => {
       return response.data.result;
     } catch (error) {
       setLoader(false)
+      console.log(error);
+    }
+  }
+
+  const getAllIdeas = async (state: string = "", search: string = "") => {
+    try {
+      setLoader(true);
+      const response = await clienteHTTP.get(`/adminIdeasGet?search=${search}&state=${state}`);
+      setAllIdeas(response.data);
+      setLoader(false);
+    } catch (error) {
       console.log(error);
     }
   }
@@ -41,6 +53,8 @@ export const useIdeas = () => {
     getIdeas,
     getIdeasFavorites,
     ideasFavorites,
-    loaderIdeasFavorites
+    loaderIdeasFavorites,
+    getAllIdeas,
+    allIdeas
   };
 }

@@ -14,6 +14,28 @@ const obtenerIdea = () => {
   });
 };
 
+const obtenerTodasIdeas = (search, state) => {
+  let filterApproved = "";
+  if (state == "1") filterApproved = "AND ideas.aprovado = 1"
+  else if (state == "0") filterApproved = "AND ideas.aprovado = 0"
+  else filterApproved = ""
+
+  return new Promise((resolve, reject) => {
+    connection.query(
+      `SELECT ideas.id_idea, ideas.nombre_idea, ideas.id_azure_docente_correo, tipo_ideas.nombre, ideas.aprovado, ideas.fecha_creacion, descripcion_idea FROM ideas \
+      INNER JOIN tipo_ideas on tipo_ideas.id_tipo_idea = ideas.id_tipo_idea \
+      WHERE ideas.nombre_idea like '%${search}%' \
+      ${filterApproved} \
+      ORDER BY ideas.fecha_creacion DESC`,
+      [search],
+      function (error, results, fields) {
+        resolve(results)
+        reject(error);
+      }
+    );
+  });
+};
+
 const obtenerIdeaProfesor = (correo) => {
   return new Promise((resolve, reject) => {
     connection.query(
@@ -129,5 +151,6 @@ module.exports = {
   getTypeIdea,
   obtenerIdeaProfesorId,
   getTypesIdeas,
-  obtenerIdeasTomadasProfesor
+  obtenerIdeasTomadasProfesor,
+  obtenerTodasIdeas
 };
