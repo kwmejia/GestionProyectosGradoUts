@@ -4,10 +4,10 @@ const UserValidation = require("../classes/response_user_validation");
 const { response, query } = require("express");
 
 const ideaTomadaModel = async (req, res = response) => {
-    const queryIdeaTomada = await ideaTomada();
+    const { search, state } = req.query
+    const queryIdeaTomada = await ideaTomada(search, state);
     res.json(queryIdeaTomada);
 };
-
 
 const getAllIdeas = async (req, res = response) => {
     const { search, state } = req.query

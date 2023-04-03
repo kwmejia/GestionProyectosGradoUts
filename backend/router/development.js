@@ -12,18 +12,14 @@ const { getAllIdeas } = require('../models/idea_tomada_get');
 const { getIdeaTomaPorId } = require('../models/ideas_tomadas_id_get');
 const { getIdeasProfesor, getIdeaProfesorId, getIdeasTomadasProfesor } = require('../models/todas_profesor_get');
 const { insertar_idea, eliminar_idea, update_idea } = require('../models/ideas_profesor_post');
-const { approveIdea, disapproveIdea } = require('../models/ideasState');
+const { approveIdea, disapproveIdea, noPayIdea, payIdea, eliminarIdeaTomada } = require('../models/ideasState');
 // Our middleware to verify correct Entity and data
 
 development.use(function timeLog(req, res, next) {
   next();
 });
 
-development.get('/ideasTomadas', [
-  check('correo', 'El correo es obligatorio').isEmail(),
-  validarCampos,
-],
-  ideaTomadaModel);
+
 
 
 development.get('/obtenerIdeas',
@@ -130,6 +126,11 @@ development.post('/favorites',
 
 //Administración
 development.get('/adminIdeasGet', getAllIdeas);
+development.get('/adminideasTomadas', ideaTomadaModel);
+
+development.put('/payIdea', payIdea);
+development.put('/noPayIdea', noPayIdea);
+development.delete('/deleteIdeaTaken/:id', eliminarIdeaTomada);
 
 development.put('/approveIdea', approveIdea);
 development.put('/disapproveIdea', disapproveIdea);

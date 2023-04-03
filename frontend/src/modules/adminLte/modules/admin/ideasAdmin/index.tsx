@@ -81,9 +81,8 @@ const IdeasAdmin = () => {
     setValueRadius(state);
     try {
       await getAllIdeas(state);
-
     } catch (error) {
-
+      showAlertError();
     }
   }
   return (
@@ -158,10 +157,7 @@ const IdeasAdmin = () => {
                 </div>
               </td>
             </tr>
-
-          ))
-
-          }
+          ))}
         </tbody>
 
 

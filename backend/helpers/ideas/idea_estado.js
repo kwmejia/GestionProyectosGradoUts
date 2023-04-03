@@ -24,8 +24,35 @@ const desaprovarIdea = (id) => {
   })
 }
 
+const pagarIdea = (id) => {
+  return new Promise((resolve, reject) => {
+    connection.query(`UPDATE idea_tomada SET estado_pago = '1' WHERE (id_idea_tomada = ?);`,
+      [id],
+      function (error, results) {
+        resolve(results);
+        reject(error);
+      }
+    );
+  })
+}
+
+const noPagarIdea = (id) => {
+  return new Promise((resolve, reject) => {
+    connection.query(`UPDATE idea_tomada SET estado_pago = '0' WHERE (id_idea_tomada = ?);`,
+      [id],
+      function (error, results) {
+        resolve(results);
+        reject(error);
+      }
+    );
+  })
+}
+
+
 
 module.exports = {
   aprovarIdea,
-  desaprovarIdea
+  desaprovarIdea,
+  pagarIdea,
+  noPagarIdea
 };

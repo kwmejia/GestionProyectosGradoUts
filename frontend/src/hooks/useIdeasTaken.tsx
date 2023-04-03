@@ -15,6 +15,7 @@ export interface paramsIdeaTaken {
 export const useIdeasTaken = () => {
 
   const [ideaTaken, setIdeaTaken] = useState<TypeIdeasTaken[]>([]);
+  const [allIdeasTaken, setAllIdeasTaken] = useState<TypeIdeasTaken[]>([]);
   const [isLoadingIdeasTaken, setisLoadingIdeasTaken] = useState<boolean>(false);
   const [ideasTakenTeacher, setIdeasTakenTeacher] = useState<TypeIdeasTakenTeacher[]>([])
 
@@ -55,12 +56,32 @@ export const useIdeasTaken = () => {
     }
   }
 
+  const getAllIdeasTaken = async (state: string = "", search: string = "") => {
+    try {
+      const res = await clientHTTP.get(`adminideasTomadas?search=${search}&state=${state}`);
+      setAllIdeasTaken(res.data);
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
+  const deteleIdeaTaken = async (id: number) => {
+    try {
+      await clientHTTP.delete(`deleteIdeaTaken/${id}`)
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
   return {
     insertIdeaTaken,
     getIdeaTakenById,
     isLoadingIdeasTaken,
     ideaTaken,
     ideasTakenTeacher,
-    getIdeasTakenTeacher
+    getIdeasTakenTeacher,
+    getAllIdeasTaken,
+    allIdeasTaken,
+    deteleIdeaTaken
   }
 }
