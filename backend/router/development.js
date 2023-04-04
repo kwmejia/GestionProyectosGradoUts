@@ -13,6 +13,7 @@ const { getIdeaTomaPorId } = require('../models/ideas_tomadas_id_get');
 const { getIdeasProfesor, getIdeaProfesorId, getIdeasTomadasProfesor } = require('../models/todas_profesor_get');
 const { insertar_idea, eliminar_idea, update_idea } = require('../models/ideas_profesor_post');
 const { approveIdea, disapproveIdea, noPayIdea, payIdea, eliminarIdeaTomada } = require('../models/ideasState');
+const { getNumIdeasTaken, getNumIdeas, getNumIdeasApproved, getNumIdeasPay } = require('../models/estadisticas_model')
 // Our middleware to verify correct Entity and data
 
 development.use(function timeLog(req, res, next) {
@@ -134,6 +135,11 @@ development.delete('/deleteIdeaTaken/:id', eliminarIdeaTomada);
 
 development.put('/approveIdea', approveIdea);
 development.put('/disapproveIdea', disapproveIdea);
+//Estadisticas
+development.get('/numIdeasTaken', getNumIdeasTaken);
+development.get('/numIdeas', getNumIdeas);
+development.get('/numIdeasApproved', getNumIdeasApproved);
+development.get('/numIdeasPay', getNumIdeasPay);
 
 module.exports = {
   development

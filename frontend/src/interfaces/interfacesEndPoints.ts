@@ -77,3 +77,10 @@ export interface TypeIdeasTeacher {
   descripcion_idea?: string;
   nombre?: string;
 }
+
+export interface IMetricsNum {
+  numIdeasTaken?: number;
+  numIdeasApproved?: number;
+  numIdeas?: number;
+  numIdeasPay?: number;
+}
