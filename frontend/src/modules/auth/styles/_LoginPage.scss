@@ -1,88 +1,102 @@
-$color-shadow-effect: #45f3ff;
-$width-login: 360px;
-$height-login: 420px;
-$bg-login: #FAFAFA;
+.login-container{
 
-.flex_center {
+  width: 100%;
+  height: 100vh;
+  background-image: url("../../../assets/img/fondo1.png");
+  background-size: cover;
+  background-position: center;
   display: flex;
   justify-content: center;
   align-items: center;
-  text-align: center;
-}
+  position: relative;
+  overflow: hidden;
 
-.container_ {
-  width: 100%;
-  min-height: 100vh;
-  background: #23242a;
+  .pez{
+    position: absolute;
+    width: 150px;
 
-  .login {
-    padding: 10px;
-    background: #1c1c1c;
-    position: relative;
-    width: $width-login;
-    height: $height-login;
-    border-radius: 8px;
-    overflow: hidden;
-    animation: animationLogin .8s linear;
-
-    .form {
-      position: absolute;
-      inset: 5px;
-      border-radius: 8px;
-      z-index: 10;
-      background: #FAFAFA;
-      flex-direction: column;
-
-      .btn_login {
-        padding: 7px;
-        border: none;
-        border-radius: 6px;
-        transition: .5s;
-        margin-top: 20px;
-        background: #23242a;
-        color: #FAFAFA99;
-
-        &:hover {
-          background: #23242a99;
-          color: white;
-        }
-      }
+    &:nth-child(1) {
+      left: 200px;
+      bottom: 20px;
+      animation: pez1 10s linear infinite; 
     }
 
-    &::before {
-      content: '';
-      position: absolute;
-      top: -50%;
-      left: -50%;
-      width: $width-login;
-      height: $height-login;
-      transform-origin: bottom right;
-      background: linear-gradient(0deg, transparent, $color-shadow-effect, $color-shadow-effect);
-      animation: animateLogin 6s linear infinite;
+    &:nth-child(2) {
+      right: 20px;
+      top: 20px;
+      width: 100px;
+      animation: pez2 40s linear infinite;
     }
 
-    &::after {
-      content: '';
-      position: absolute;
-      top: -50%;
-      left: -50%;
-      width: $width-login;
-      height: $height-login;
-      transform-origin: bottom right;
-      background: linear-gradient(0deg, transparent, $color-shadow-effect, $color-shadow-effect);
-      animation: animateLogin 6s linear infinite;
-      animation-delay: -3s;
+    &:nth-child(3) {
+      left: -10px;
+      top: 400px;
+      width: 100px;
+      animation: pez3 20s linear infinite;
     }
   }
+
+
+
+  .login {
+    width: 500px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    background: #FAFAFA50;
+    padding: 30px 40px;
+    border-radius: 50px;
+    backdrop-filter: blur(.7em);
+    text-align: center;
+
+    animation: animationLogin .8s linear;
+
+    img {
+    position: relative;
+    width: 300px;
+    margin-right: 40px;
+    }
+  }
+
+  .btn-login {
+    padding: 15px 30px;
+    background: #C3D730;
+    color: #FAFAFA;
+    border-radius: 50px;
+    border: none;
+    font-size: 18px;
+  }
+  
 }
 
-@keyframes animateLogin {
+
+@keyframes pez1 {
   0% {
-    transform: rotate(0deg);
+    transform: translateX(0%);
   }
 
   100% {
-    transform: rotate(360deg);
+    transform: translate(2000px, -200px);
+  }
+}
+
+@keyframes pez2 {
+
+  100% {
+    transform: translate(-1000px, 200px);
+  }
+}
+
+@keyframes pez3 {
+  0% {
+    transform: translateX(0%);
+  }
+
+
+  100% {
+    transform: translate(2000px, 100px);
   }
 }
 

@@ -11,18 +11,17 @@ const LoginPage = () => {
 
   return (
     <main className="container_ flex_center">
-      <section className="login">
-        <div className="flex_center form ">
-          <img src={require('../../assets/octupusDark.jpeg')} alt="CDN_Logo" width={300} />
-          <button
-            className="btn_login flex_center"
-            onClick={logIn}
-          >
-            <img src={require('../../assets/o365.png')} alt="365" className="me-2" />
-            Iniciar sesión con correo institucional
-          </button>
+     
+      <section className="login-container">
+        <img className="pez" src={require('../../assets/img/pez1.png')} alt=""/>
+        <img className="pez" src={require('../../assets/img/pez4.png')} alt=""/>
+        <img className="pez" src={require('../../assets/img/pez5.png')} alt=""/>
+        <div className="login">
+          <img  src={require('../../assets/img/pulpo2.png')} alt="" width="300"/>
+          <button className="btn-login"  onClick={logIn}>Inicar sesión con correo institucional</button>
         </div>
       </section>
+
     </main>
   )
 }
