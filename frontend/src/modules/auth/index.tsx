@@ -16,10 +16,14 @@ const LoginPage = () => {
         <img className="pez" src={require('../../assets/img/pez1.png')} alt=""/>
         <img className="pez" src={require('../../assets/img/pez4.png')} alt=""/>
         <img className="pez" src={require('../../assets/img/pez5.png')} alt=""/>
+        <img className="pez" src={require('../../assets/img/pez9.png')} alt=""/>
+        <img className="pez" src={require('../../assets/img/pezRosa.png')} alt=""/>
+
         <div className="login">
           <img  src={require('../../assets/img/pulpo2.png')} alt="" width="300"/>
           <button className="btn-login"  onClick={logIn}>Inicar sesión con correo institucional</button>
         </div>
+        
       </section>
 
     </main>
