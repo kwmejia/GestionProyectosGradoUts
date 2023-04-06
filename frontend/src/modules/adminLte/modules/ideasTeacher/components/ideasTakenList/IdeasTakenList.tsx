@@ -1,6 +1,7 @@
 import { useEffect, useContext } from 'react';
 import { useIdeasTaken } from '../../../../../../hooks/useIdeasTaken';
 import { AuthContext } from '../../../../../../context/AuthContext';
+import formatDate from '../../../../../../helpers/formatDate';
 import './ideasTaken.scss'
 
 export const IdeasTakenList = () => {
@@ -43,7 +44,7 @@ export const IdeasTakenList = () => {
               <td>{idea.nombre_idea}</td>
               <td>{idea.nombre}</td>
               <td>{idea.id_azure_estudiante_correo}</td>
-              <td>{idea.fecha_aceptado}</td>
+              <td>{formatDate(idea.fecha_aceptado)}</td>
             </tr>
           ))}
         </tbody>

@@ -17,8 +17,9 @@ import { useFavorites } from '../../../../../../hooks/useFavorites';
 import { useCarrito } from '../../../../../../hooks/useCarrito';
 import { AuthContext } from '../../../../../../context';
 import AzureGraphServices from '../../../../../../config/AzureGraphServices';
-import './idea.scss'
 import Swal from 'sweetalert2';
+import formatDate from '../../../../../../helpers/formatDate';
+import './idea.scss'
 interface ExpandMoreProps extends IconButtonProps {
   expand: boolean;
 }
@@ -134,7 +135,7 @@ export function CardIdea({ idea, favorites, carrito }: PropsCard) {
         title={nombre_idea}
         subheader={(
           <>
-            <p>{fecha_creacion?.substr(0, 10)}</p>
+            <p>{formatDate(fecha_creacion).substring(0, 10)}</p>
             <p className={`${nombre} tag`}>{nombre}</p>
           </>
         )}

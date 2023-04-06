@@ -3,6 +3,7 @@ import { useIdeasTaken } from '../../../../../hooks';
 import clientHTTP from '../../../../../api/configAxios';
 import Swal from 'sweetalert2';
 import { FormControl, FormControlLabel, Radio, RadioGroup, TextField } from '@mui/material';
+import formatDate from '../../../../../helpers/formatDate';
 
 const IdeasTakenAdmin = () => {
   const [valueRadius, setValueRadius] = useState("");
@@ -144,7 +145,7 @@ const IdeasTakenAdmin = () => {
               <td>{index + 1}</td>
               <td>{idea.nombre_idea}</td>
               <td>{idea.id_azure_estudiante_correo}</td>
-              <td>{idea.fecha_aceptado}</td>
+              <td>{formatDate(idea.fecha_aceptado)}</td>
               <td>
                 <div className="dropdown">
                   <button className="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">

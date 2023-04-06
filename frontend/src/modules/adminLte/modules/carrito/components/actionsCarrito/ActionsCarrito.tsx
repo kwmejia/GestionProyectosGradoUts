@@ -14,6 +14,7 @@ import { AuthContext } from '../../../../../../context';
 import { useNavigate } from 'react-router-dom';
 import Swal from 'sweetalert2';
 import './actionsCarrito.scss';
+import formatDate from '../../../../../../helpers/formatDate';
 
 
 interface PropsAction {
@@ -148,7 +149,7 @@ export const ActionsCarrito = ({ idea, carrito }: PropsAction) => {
           <>
             <LightTooltip title="Fecha en la que se tomó la idea" placement="right">
               <div className="text-des"><QueryBuilderIcon color="primary" />
-                <span className="ms-1">{ideaTaken[0].fecha_aceptado.substr(0, 10)}</span>
+                <span className="ms-1">{formatDate(ideaTaken[0].fecha_aceptado)}</span>
               </div>
             </LightTooltip>
             <LightTooltip title="Estado de pago" placement="right">

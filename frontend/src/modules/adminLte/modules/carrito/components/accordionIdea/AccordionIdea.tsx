@@ -3,6 +3,7 @@ import { Avatar } from '@mui/material';
 import { TypeCarrito, TypeFavorites, TypeStateIdeas } from '../../../../../../interfaces/interfacesEndPoints';
 import AzureGraphServices from '../../../../../../config/AzureGraphServices';
 import './accordions.scss';
+import formatDate from '../../../../../../helpers/formatDate';
 
 
 interface PropsAccordion {
@@ -59,11 +60,11 @@ export const AccordionIdea = ({ idea }: PropsAccordion) => {
               <p className="my-2"> <span>Docente: </span> {userDirector.displayName}</p>
               <p className="my-2"> <span>Tipo de idea: </span> </p>
               <p className={`${nombre} tag`}>{nombre}</p>
-              <p className="my-2"> <span>Fecha idea propuesta:</span> {fecha_creacion?.substr(0, 10)}</p>
+              <p className="my-2"> <span>Fecha idea propuesta:</span> {formatDate(fecha_creacion)}</p>
               <p className="my-2"> <span>Correo:</span> {id_azure_docente_correo}</p>
               <p className="my-2"><span>Descripción: </span></p>
-              <p className="my-2">
-                {descripcion_idea}
+              <p className="my-2" dangerouslySetInnerHTML={{ __html: descripcion_idea as string }}>
+
               </p>
             </div>
           </div>

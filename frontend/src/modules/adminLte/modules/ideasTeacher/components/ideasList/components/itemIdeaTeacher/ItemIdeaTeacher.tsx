@@ -15,6 +15,7 @@ import { useIdeasTeacher } from '../../../../../../../../hooks/useIdeasTeacher';
 import { useNavigate } from 'react-router-dom';
 import { useIdeasTaken } from '../../../../../../../../hooks';
 import clientHTTP from '../../../../../../../../api/configAxios';
+import formatDate from '../../../../../../../../helpers/formatDate';
 
 interface PropsItemIdeaTeacher {
   idea: TypeIdeasTeacher;
@@ -111,7 +112,7 @@ export const ItemIdeaTeacher = ({ idea, updateComponent, index }: PropsItemIdeaT
               <Avatar src={user?.avatar} aria-label="Foto Profesor" />
               <p className="my-2"> <span>Tipo de idea: </span> </p>
               <p className={`${nombre} tag`}>{nombre}</p>
-              <p className="my-2"> <span>Fecha idea propuesta: </span>{fecha_creacion?.substr(0, 10)}</p>
+              <p className="my-2"> <span>Fecha idea propuesta: </span>{formatDate(fecha_creacion)}</p>
               <p className="my-2"> <span>Correo:</span> {id_azure_docente_correo}</p>
 
             </Col>
