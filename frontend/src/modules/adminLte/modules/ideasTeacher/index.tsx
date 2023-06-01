@@ -10,7 +10,6 @@ const IdeasTeacher = () => {
   const navigate = useNavigate();
   return (
     <section className="ideas-teacher-container m-4 fadeIn">
-
       <Row>
         <Col>
           <Tab.Container id="ideas-tabs" defaultActiveKey="first">

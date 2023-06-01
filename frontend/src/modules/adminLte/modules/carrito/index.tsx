@@ -7,6 +7,8 @@ import { useCarrito } from '../../../../hooks/useCarrito';
 import iconSrc from "../../../../assets/img/iconSad.png";
 import { AccordionIdea } from './components/accordionIdea/AccordionIdea';
 import { ActionsCarrito } from './components/actionsCarrito/ActionsCarrito';
+import { Roles } from '../../../../interfaces/enumRoles';
+import { useNavigate } from 'react-router-dom';
 
 const CarritoPage = () => {
   const [ideasCard, setIdeasCard] = useState<TypeStateIdeas[]>([]);
@@ -18,13 +20,20 @@ const CarritoPage = () => {
   const { getIdeasFavorites, loaderIdeasFavorites } = useIdeas();
   const { getFavorites, favorites } = useFavorites();
   const { getCarrito } = useCarrito();
-
+  const navigate = useNavigate();
   useEffect(() => {
     onMountedComponent();
   }, [user]);
 
 
   const onMountedComponent = async () => {
+    if (user?.rol == Roles.ADMIN) {
+      navigate("/estadisticas");
+    }
+
+    if (user?.rol == Roles.TEACHER) {
+      navigate("/mis-ideas");
+    }
     if (user === undefined) return;
     const dataIdeas = await getIdeasFavorites(user?.email);
     const fav = await getFavorites(user?.email);
@@ -64,7 +73,6 @@ const CarritoPage = () => {
             }
           </div>
         </div>
-
       </div>
     </>
   )

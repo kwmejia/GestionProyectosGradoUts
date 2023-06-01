@@ -4,6 +4,9 @@ import { useEffect, useContext, useState } from 'react';
 import { useIdeasTeacher } from '../../../../../../hooks/';
 import { AuthContext } from '../../../../../../context/AuthContext';
 import iconSrc from "../../../../../../assets/img/iconSad.png";
+import { Roles } from '../../../../../../interfaces/enumRoles';
+import { useNavigate, useNavigation } from 'react-router-dom';
+import { Navigate } from 'react-router-dom';
 
 export const IdeasList = () => {
 
@@ -12,12 +15,18 @@ export const IdeasList = () => {
   const { getIdeasTeacher, ideasTeacher } = useIdeasTeacher();
 
   useEffect(() => {
+
     onMountedComponent();
   }, [user, updateComponent]);
 
   const handleUpdateComponent = () => setUpdateComponent(!updateComponent);
 
   const onMountedComponent = async () => {
+
+    if (user?.rol == Roles.ADMIN) {
+      console.log(user?.rol, Roles.ADMIN);
+      return (<Navigate to="/administrador-ideas-propuestas" />)
+    }
     if (user?.email) await getIdeasTeacher(user?.email);
   }
 
@@ -38,14 +47,12 @@ export const IdeasList = () => {
         !ideasTeacher.length && (
           <>
             <div className="d-flex w-100 gap-3 flex-column justify-content-center align-items-center">
-              <h4 style={{color: '#777777'}}>No tienes ideas</h4>
+              <h4 style={{ color: '#777777' }}>No tienes ideas</h4>
               <img src={iconSrc} alt="img" width={100} />
             </div>
           </>
         )
-
       }
-
     </div>
   )
 }

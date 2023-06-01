@@ -2,6 +2,7 @@ import { createContext, useEffect, useState } from 'react';
 import { isExpired } from 'react-jwt';
 import AzureGraphServices from '../config/AzureGraphServices';
 import { AppUser, AuthContextProps, AuthProviderProps } from '../interfaces/interfacesAuthContext';
+import clientHTTP from '../api/configAxios';
 
 
 export const AuthContext = createContext({} as AuthContextProps);
@@ -40,14 +41,16 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
       ]);
 
       const [userRes, photo] = promises;
-
+      const { data } = await clientHTTP.get(`/isAdmin?email=${userRes.mail}`);
+      console.log(data, "respuesrta")
       setUser({
         displayName: userRes.displayName || '',
         email: userRes.mail || userRes.userPrincipalName || '',
-        // email: res ? "ADMINISTRADOR" : userRes.mail || userRes.userPrincipalName || '',
-        rol: userRes.jobTitle || '',
+        rol: data ? "Administrador" : userRes.jobTitle || '',
         avatar: photo
       });
+
+
     } catch (error) {
       console.error(error);
     }

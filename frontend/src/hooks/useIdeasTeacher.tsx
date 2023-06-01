@@ -27,7 +27,7 @@ export const useIdeasTeacher = () => {
   const postIdeasTeacher = async (title: string, email: string | undefined, type: string, description: string) => {
 
     try {
-      const res = await clientHTTP.post(`/ideasProfesor`, {
+      await clientHTTP.post(`/ideasProfesor`, {
         title,
         email,
         type,
@@ -35,7 +35,6 @@ export const useIdeasTeacher = () => {
         take: 0,
         description
       });
-      console.log(res);
     } catch (error) {
       console.log(error);
     }

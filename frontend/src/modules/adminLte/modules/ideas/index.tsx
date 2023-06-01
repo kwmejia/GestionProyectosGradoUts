@@ -9,6 +9,8 @@ import { useCarrito } from '../../../../hooks/useCarrito';
 import { FilterTag } from './components/filterTag/FilterTag';
 import './styles/_ideas.scss';
 import { TextField } from '@mui/material';
+import { Roles } from '../../../../interfaces/enumRoles';
+import { useNavigate } from 'react-router-dom';
 
 const IdeasPage = () => {
 
@@ -18,6 +20,7 @@ const IdeasPage = () => {
   const [searchCard, setSearchCard] = useState('');
   const [carritoCard, setCarritoCard] = useState<TypeCarrito[]>([])
   const { user } = useContext(AuthContext);
+  const navigate = useNavigate();
 
   const { getIdeas, ideas, loader } = useIdeas();
   const { getFavorites } = useFavorites();
@@ -29,6 +32,13 @@ const IdeasPage = () => {
 
 
   const onMountedComponent = async () => {
+    if (user?.rol == Roles.ADMIN) {
+      navigate("/estadisticas");
+    }
+
+    if (user?.rol == Roles.TEACHER) {
+      navigate("/mis-ideas");
+    }
     if (user === undefined) return;
     const dataIdeas = await getIdeas(user?.email);
     const fav = await getFavorites(user?.email);
@@ -62,7 +72,6 @@ const IdeasPage = () => {
         <h2 className="title-section mt-2 text-center text-title mt-4">Ideas Propuestas</h2>
         <div className="mt-3  d-flex flex-wrap justify-content-center  justify-content-xl-start align-items-center  w-100 px-4">
           <div className=" ms-5">
-            {/* <input type="text" required onChange={(e) => filterCards(e.target.value)} /> */}
             <TextField
               label="Buscar"
               variant="outlined"

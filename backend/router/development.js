@@ -13,7 +13,8 @@ const { getIdeaTomaPorId } = require('../models/ideas_tomadas_id_get');
 const { getIdeasProfesor, getIdeaProfesorId, getIdeasTomadasProfesor } = require('../models/todas_profesor_get');
 const { insertar_idea, eliminar_idea, update_idea } = require('../models/ideas_profesor_post');
 const { approveIdea, disapproveIdea, noPayIdea, payIdea, eliminarIdeaTomada } = require('../models/ideasState');
-const { getNumIdeasTaken, getNumIdeas, getNumIdeasApproved, getNumIdeasPay } = require('../models/estadisticas_model')
+const { getNumIdeasTaken, getNumIdeas, getNumIdeasApproved, getNumIdeasPay } = require('../models/estadisticas_model');
+const { isValidation } = require('../models/validacion.js');
 // Our middleware to verify correct Entity and data
 
 development.use(function timeLog(req, res, next) {
@@ -21,8 +22,7 @@ development.use(function timeLog(req, res, next) {
 });
 
 
-
-
+development.get("/isAdmin", isValidation);
 development.get('/obtenerIdeas',
   [
     check('correo', 'El correo es obligatorio').isEmail(),

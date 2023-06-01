@@ -31,8 +31,7 @@ export const useFavorites = () => {
 
   const addFavorite = async (email: string | undefined, id_idea: number) => {
     try {
-      const res = await clientHTTP.post(`/favorites`, { id_idea, email });
-      console.log(res);
+      await clientHTTP.post(`/favorites`, { id_idea, email });
     } catch (error) {
       console.log(error);
     }
