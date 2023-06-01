@@ -13,6 +13,8 @@ import './statistics.scss'
 import { CardMetric } from './components/cardMetric/CardMetric';
 import { useMetrics } from '../../../../../hooks/useMetrics';
 import { AuthContext } from '../../../../../context';
+import { useNavigate } from 'react-router-dom';
+import { Roles } from '../../../../../interfaces/enumRoles';
 
 interface IMetricsList {
   children: IconDefinition;
@@ -25,6 +27,8 @@ const Statistics = (): JSX.Element => {
   const { getMetricsIdeas, metrics } = useMetrics();
   const { user } = useContext(AuthContext);
 
+  const navigate = useNavigate();
+
   const listMetrics: IMetricsList[] = [
     { children: faLightbulb, title: "Número de ideas", value: metrics?.numIdeas as number || 0 },
     { children: faCheckCircle, title: "Ideas Aprobadas", value: metrics?.numIdeasApproved as number || 0 },
@@ -32,6 +36,13 @@ const Statistics = (): JSX.Element => {
     { children: faMoneyBill1Wave, title: "Ideas compradas", value: metrics?.numIdeasPay as number || 0 },
   ]
   useEffect(() => {
+    if (user?.rol == Roles.TEACHER) {
+      navigate("/mis-ideas");
+    }
+
+    if (user?.rol == Roles.STUDENT) {
+      navigate("/");
+    }
     onMounted();
   }, [user]);
 

@@ -6,14 +6,13 @@ import { AuthContext } from '../../../../../../context/AuthContext';
 import iconSrc from "../../../../../../assets/img/iconSad.png";
 import { Roles } from '../../../../../../interfaces/enumRoles';
 import { useNavigate, useNavigation } from 'react-router-dom';
-import { Navigate } from 'react-router-dom';
 
 export const IdeasList = () => {
 
   const [updateComponent, setUpdateComponent] = useState(false);
   const { user } = useContext(AuthContext);
   const { getIdeasTeacher, ideasTeacher } = useIdeasTeacher();
-
+  const navigate = useNavigate();
   useEffect(() => {
 
     onMountedComponent();
@@ -22,11 +21,14 @@ export const IdeasList = () => {
   const handleUpdateComponent = () => setUpdateComponent(!updateComponent);
 
   const onMountedComponent = async () => {
-
     if (user?.rol == Roles.ADMIN) {
-      console.log(user?.rol, Roles.ADMIN);
-      return (<Navigate to="/administrador-ideas-propuestas" />)
+      navigate("/estadisticas");
     }
+
+    if (user?.rol == Roles.STUDENT) {
+      navigate("/");
+    }
+
     if (user?.email) await getIdeasTeacher(user?.email);
   }
 

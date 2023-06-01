@@ -11,6 +11,8 @@ import { useIdeasTeacher } from '../../../../../../hooks/useIdeasTeacher';
 import { AuthContext } from '../../../../../../context/AuthContext';
 import 'react-quill/dist/quill.snow.css';
 import './newIdea.scss';
+import { useNavigate } from 'react-router-dom';
+import { Roles } from '../../../../../../interfaces/enumRoles';
 
 const NewIdea = () => {
   const [typesIdeas, setTypesIdeas] = useState([
@@ -27,12 +29,20 @@ const NewIdea = () => {
 
   const { postIdeasTeacher } = useIdeasTeacher();
   const { user } = useContext(AuthContext);
-
+  const navigate = useNavigate();
   useEffect(() => {
     onMountedComponent();
   }, [user])
 
   const onMountedComponent = () => {
+    if (user?.rol == Roles.ADMIN) {
+      navigate("/estadisticas");
+    }
+
+    if (user?.rol == Roles.STUDENT) {
+      navigate("/");
+    }
+
     checkInfoSave();
   }
 
@@ -150,7 +160,7 @@ const NewIdea = () => {
         </div>
       </div>
 
-      <h4 className="text-second mt-4">Descripción</h4>
+      <h4 className="text-second mt-4">Descripción o objetivos</h4>
       <div className="quill-container me-5">
         <ReactQuill theme="snow" value={descriptionIdea} onChange={onChangeDescription} />
       </div>

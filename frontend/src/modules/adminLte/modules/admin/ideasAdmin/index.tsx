@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import { useContext, useEffect, useRef, useState } from 'react';
 import { useIdeas } from '../../../../../hooks';
 import { TypeStateIdeas } from '../../../../../interfaces/interfacesEndPoints';
 import clientHTTP from '../../../../../api/configAxios';
@@ -7,9 +7,11 @@ import Radio from '@mui/material/Radio';
 import RadioGroup from '@mui/material/RadioGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import FormControl from '@mui/material/FormControl';
-import FormLabel from '@mui/material/FormLabel';
 import Swal from 'sweetalert2';
 import './ideasAdmin.scss';
+import { AuthContext } from '../../../../../context';
+import { Roles } from '../../../../../interfaces/enumRoles';
+import { useNavigate } from 'react-router-dom';
 
 
 
@@ -19,11 +21,22 @@ const IdeasAdmin = () => {
   const { getAllIdeas, allIdeas, loader } = useIdeas();
   const [ideaModal, setideaModal] = useState<TypeStateIdeas>();
 
+
+  const { user } = useContext(AuthContext);
+  const navigate = useNavigate();
+
   useEffect(() => {
     onMounted();
   }, [])
 
   const onMounted = async () => {
+    if (user?.rol == Roles.TEACHER) {
+      navigate("/mis-ideas");
+    }
+
+    if (user?.rol == Roles.STUDENT) {
+      navigate("/");
+    }
     await getAllIdeas();
   }
 

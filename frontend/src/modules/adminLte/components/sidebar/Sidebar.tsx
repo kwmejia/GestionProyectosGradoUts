@@ -10,7 +10,7 @@ import { Roles } from '../../../../interfaces/enumRoles';
 
 export const Sidebar = () => {
 
-  const [sideBarActive, setsideBarActive] = useState(false);
+  const [sideBarActive, setsideBarActive] = useState(true);
 
   const { user } = useContext(AuthContext);
 

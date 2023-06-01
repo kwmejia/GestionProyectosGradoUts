@@ -163,7 +163,10 @@ export function CardIdea({ idea, favorites, carrito }: PropsCard) {
       </CardActions>
       <Collapse in={expanded} timeout="auto" unmountOnExit>
         <CardContent>
+          <p className="mb-3">Titulo del proyecto:</p>
           <h2 style={{ fontSize: 20, fontWeight: 'bold' }} className="mb-4">{nombre_idea}</h2>
+
+          <p className="my-3">Objetivos o descripción:</p>
           <Typography paragraph className="description-cont des-cont" id="description-cont" dangerouslySetInnerHTML={{ __html: descripcion_idea as string }}>
 
           </Typography>

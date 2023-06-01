@@ -1,15 +1,30 @@
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { useIdeasTaken } from '../../../../../hooks';
 import clientHTTP from '../../../../../api/configAxios';
 import Swal from 'sweetalert2';
 import { FormControl, FormControlLabel, Radio, RadioGroup, TextField } from '@mui/material';
 import formatDate from '../../../../../helpers/formatDate';
+import { AuthContext } from '../../../../../context';
+import { useNavigate } from 'react-router-dom';
+import { Roles } from '../../../../../interfaces/enumRoles';
 
 const IdeasTakenAdmin = () => {
   const [valueRadius, setValueRadius] = useState("");
 
   const { allIdeasTaken, getAllIdeasTaken, deteleIdeaTaken } = useIdeasTaken();
+
+  const { user } = useContext(AuthContext);
+  const navigate = useNavigate();
+
+
   useEffect(() => {
+    if (user?.rol == Roles.TEACHER) {
+      navigate("/mis-ideas");
+    }
+
+    if (user?.rol == Roles.STUDENT) {
+      navigate("/");
+    }
     onMounted();
   }, [])
 

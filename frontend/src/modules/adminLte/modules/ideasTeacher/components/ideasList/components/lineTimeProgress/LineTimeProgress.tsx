@@ -22,7 +22,7 @@ export const LineTimeProgress = ({ approved, taken }: PropsLineTimeProgress) => 
       </div>
 
       <div className={approved ? "activeTime circle" : "circle"}>
-        <span>Aprovada</span>
+        <span>Aprobada</span>
       </div>
 
       <div className={taken ? "activeTime circle" : "circle"}>

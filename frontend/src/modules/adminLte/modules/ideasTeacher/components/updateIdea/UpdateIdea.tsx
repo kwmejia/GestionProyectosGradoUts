@@ -12,6 +12,7 @@ import { useIdeasTeacher } from '../../../../../../hooks/useIdeasTeacher';
 import { AuthContext } from '../../../../../../context/AuthContext';
 import 'react-quill/dist/quill.snow.css';
 import './newIdea.scss';
+import { Roles } from '../../../../../../interfaces/enumRoles';
 
 const NewIdea = () => {
   const [typesIdeas, setTypesIdeas] = useState([
@@ -35,6 +36,13 @@ const NewIdea = () => {
   }, [user])
 
   const onMountedComponent = async () => {
+    if (user?.rol == Roles.ADMIN) {
+      navigate("/estadisticas");
+    }
+
+    if (user?.rol == Roles.STUDENT) {
+      navigate("/");
+    }
 
     const data = await getIdeaTeacherById(Number(params.id), user?.email);
     if (!data) {
